@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="card-header clearfix">
+    <div class="utils__title pull-left">
+      <strong>Photo Gallery</strong>
+    </div>
+    <div class="pull-right">
+      <nz-upload
+        nzAction="https://jsonplaceholder.typicode.com/posts/"
+      >
+        <button nz-button nzType="primary">
+          <i nz-icon type="upload"></i><span>Upload</span>
+        </button>
+      </nz-upload>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="cui-gallery">
+      <div
+        class="cui-gallery-item"
+        *ngFor="let image of galleryData"
+        [ngStyle]="{'background-image': 'url(' + image.path + ')'}"
+        [ngClass]="[image.editable ? 'cui-gallery-with-controls' : '']"
+      >
+        <div
+          *ngIf="image.editable"
+          class="cui-gallery-item-controls"
+        >
+          <nz-button-group>
+            <button nz-button><i nz-icon type="edit" theme="outline"></i></button>
+            <button nz-button><i nz-icon type="delete" theme="outline"></i></button>
+          </nz-button-group>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

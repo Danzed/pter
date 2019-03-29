@@ -1,0 +1,104 @@
+<section class="card">
+  <div class="card-header">
+    <div class="utils__title">
+      <strong>YouTube View</strong>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="videoPage clearfix">
+      <div class="mainContent">
+        <div class="player">
+          <img src="assets/images/photos/4.jpeg">
+        </div>
+        <div class="descr">
+          <div class="block">
+            <div class="mb-2">
+              <strong>
+                Published on <span>{{viewData.date}}</span>
+              </strong>
+              <div class="pull-right">
+                <nz-dropdown>
+                  <a nz-dropdown>
+                    Actions <i nz-icon type="down"></i>
+                  </a>
+                  <ul nz-menu nzSelectable>
+                    <li nz-menu-item>
+                      <i nz-icon [type]="'edit'"></i> Edit Post
+                    </li>
+                    <li nz-menu-item>
+                      <i nz-icon [type]="'delete'"></i> Delete Post
+                    </li>
+                    <li nz-menu-item>
+                      <i nz-icon [type]="'frown-o'"></i> Mark as a Spam
+                    </li>
+                  </ul>
+                </nz-dropdown>
+              </div>
+            </div>
+            <p class="mb-0">{{viewData.description}}</p>
+          </div>
+        </div>
+        <div>
+          <div class="block">
+            <div class="addComment">
+              <div class="commentUser">
+                <cui-avatar [size]="50" [src]="viewData.accountImg"></cui-avatar>
+              </div>
+              <div class="commentForm">
+                <textarea rows="3" nz-input placeholder="Write a comment..."></textarea>
+                <div class="mt-3">
+                  <button nz-button nzType="primary"><i class="fa fa-send mr-2"></i>Send</button>
+                </div>
+              </div>
+            </div>
+            <div class="commentItem clearfix" *ngFor="let comment of viewData.comments">
+              <div class="commentAvatar">
+                <cui-avatar [src]="comment.avatar" [size]="50" [bordered]="false"></cui-avatar>
+              </div>
+              <div class="commentContent">
+                <strong>
+                  {{comment.name}}
+                  <span class="commentTime text-muted ml-2">
+                    {{comment.date}}
+                  </span>
+                </strong>
+                <p class="mb-0">{{comment.content}}</p>
+                <div class="commentLike">
+                  <a href="javascript: void(0);" class="mr-2">
+                    <i class="icmn-heart mr-2"></i>
+                    <span>{{comment.likesCount}} Likes</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar block">
+        <div class="sidebarHead">
+          <strong class="sidebarTitle">Up next</strong>
+          <div class="pull-right">
+            <label nz-checkbox>Autoplay</label>
+          </div>
+        </div>
+        <ul class="watchNext">
+          <li class="nextItem clearfix" *ngFor="let video of upNext">
+            <a href="javascript: void(0)" class="nextItemLink">
+              <div class="itemThumb">
+                <img [src]="video.cover" [alt]="video.name" class="itemThumbImg">
+              </div>
+              <div class="itemDescr">
+                <span class="itemName">{{video.name}}</span>
+                <span class="itemAuthor">{{video.author}}</span>
+                <span class="itemViews text-muted">
+                  <span class="itemCount">{{video.views}}</span>
+                  views
+                </span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

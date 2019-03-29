@@ -1,0 +1,139 @@
+<div class="card">
+  <div class="card-header">
+    <div class="utils__title">
+      <strong>Product Edit</strong>
+    </div>
+  </div>
+  <div class="card-body">
+    <h4 class="text-black mb-3">
+      <strong>Main Parameters</strong>
+    </h4>
+    <form nz-form nzLayout="'vertical'">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="row">
+            <div class="col-lg-6">
+              <nz-form-item>
+                <nz-form-label nzFor="title">Title</nz-form-label>
+                <nz-form-control>
+                  <input nz-input name="title" type="text" id="title" placeholder="Product title">
+                </nz-form-control>
+              </nz-form-item >
+            </div>
+            <div class="col-lg-6">
+              <nz-form-item>
+                <nz-form-label nzFor="sku">SKU</nz-form-label>
+                <nz-form-control>
+                  <input nz-input name="sku" type="text" id="sku" placeholder="Product SKU">
+                </nz-form-control>
+              </nz-form-item >
+            </div>
+            <div class="col-lg-12">
+              <nz-form-item>
+                <nz-form-label nzFor="category">Product category</nz-form-label>
+                <nz-form-control>
+                  <nz-tree-select
+                    id="category"
+                    style="width: 100%; display: block;"
+                    [nzNodes]="nodes"
+                    nzShowSearch
+                    nzPlaceHolder="Product Category">
+                  </nz-tree-select>
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item>
+                <nz-form-label nzFor="shortDescr">Short Description</nz-form-label>
+                <nz-form-control>
+                  <textarea rows="3" nz-input id="shortDescr"></textarea>
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item>
+                <nz-form-label nzFor="fullDescr">Full Description</nz-form-label>
+                <nz-form-control>
+                  <textarea rows="3" nz-input id="fullDescr"></textarea>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <h4 class="text-black mt-2 mb-3">
+            <strong>Pricing</strong>
+          </h4>
+          <div class="row">
+            <div class="col-lg-6">
+              <nz-form-item>
+                <nz-form-label nzFor="totalPrice">Total Price</nz-form-label>
+                <nz-form-control>
+                  <input nz-input name="totalPrice" type="text" id="totalPrice" placeholder="Total Price">
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div class="col-lg-6">
+              <nz-form-item>
+                <nz-form-label nzFor="discPrice">Discount Price</nz-form-label>
+                <nz-form-control>
+                  <input nz-input name="discPrice" type="text" id="discPrice" placeholder="Discount Price">
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <h4 class="text-black mt-2 mb-3">
+            <strong>Attributes</strong>
+          </h4>
+          <div class="row">
+            <div class="col-lg-6">
+              <nz-form-item>
+                <nz-form-label nzFor="totalPrice">Colors</nz-form-label>
+                <nz-form-control>
+                  <nz-select style="width: 100%; display: block;" nzPlaceHolder="Choose product color">
+                    <nz-option nzValue="blue" nzLabel="Blue"></nz-option>
+                    <nz-option nzValue="red" nzLabel="Red"></nz-option>
+                    <nz-option nzValue="green" nzLabel="Green"></nz-option>
+                  </nz-select>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div class="col-lg-6">
+              <nz-form-item>
+                <nz-form-label nzFor="totalPrice">Size</nz-form-label>
+                <nz-form-control>
+                  <nz-select style="width: 100%; display: block;" nzPlaceHolder="Choose product size">
+                    <nz-option nzValue="s" nzLabel="Small"></nz-option>
+                    <nz-option nzValue="m" nzLabel="Middle"></nz-option>
+                    <nz-option nzValue="xl" nzLabel="Extra large"></nz-option>
+                  </nz-select>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div class="col-lg-12">
+              <div class="form-actions">
+                <button nz-button nzType="primary" class="mr-2">Save Product</button>
+                <button nz-button>Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <nz-upload
+            class="height-300 mb-3 d-block"
+            nzType="drag"
+            [nzMultiple]="true"
+            [nzLimit]="2"
+            nzAction="https://jsonplaceholder.typicode.com/posts/"
+          >
+            <p class="ant-upload-drag-icon">
+              <i nz-icon type="inbox"></i>
+            </p>
+            <p class="ant-upload-text">Click or drag file to this area to upload</p>
+            <p class="ant-upload-hint">Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files</p>
+          </nz-upload>
+          <nz-upload
+            nzAction="https://jsonplaceholder.typicode.com/posts/">
+            <button nz-button>
+              <i nz-icon type="upload"></i><span>Click to Upload</span>
+            </button>
+          </nz-upload>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

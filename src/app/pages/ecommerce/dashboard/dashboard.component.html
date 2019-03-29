@@ -1,0 +1,280 @@
+<section class="card">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-xl-8 col-lg-12">
+        <div class="mb-5">
+          <nz-tabset>
+            <nz-tab nzTitle="Orders" [nzForceRender]="true">
+              <nz-select style="width: 120px;" [(ngModel)]="ordersSelectValue">
+                <nz-option nzValue="lastDay" nzLabel="Last Day"></nz-option>
+                <nz-option nzValue="lastWeek" nzLabel="Last Week"></nz-option>
+                <nz-option nzValue="lastMonth" nzLabel="Last Month"></nz-option>
+                <nz-option nzValue="last3Month" nzLabel="Last 3 Month"></nz-option>
+              </nz-select>
+              <x-chartist
+                class="ct-chart height-300"
+                [data]="ordersGraph"
+                type="Line"
+                [options]="chartOptions"
+              >
+              </x-chartist>
+              <div class="row mt-5">
+                <div class="col-lg-3 col-6">
+                  <div class="mb-3">
+                    <div class="font-size-16 mb-2">Revenue</div>
+                    <div class="font-size-20 text-black">
+                      <strong>{{ordersInfo.revenue}}</strong>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                  <div class="mb-3">
+                    <div class="font-size-16 mb-2">Tax</div>
+                    <div class="font-size-20 text-black">
+                      <strong>{{ordersInfo.tax}}</strong>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                  <div class="mb-3">
+                    <div class="font-size-16 mb-2">Shipping</div>
+                    <div class="font-size-20 text-black">
+                      <strong>{{ordersInfo.shipping}}</strong>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                  <div class="mb-3">
+                    <div class="font-size-16 mb-2">Quantity</div>
+                    <div class="font-size-20">
+                      <strong>{{ordersInfo.quantity}}</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </nz-tab>
+            <nz-tab nzTitle="Amount" [nzForceRender]="true">
+              <nz-select style="width: 120px;" [(ngModel)]="ordersSelectValue">
+                <nz-option nzValue="lastDay" nzLabel="Last Day"></nz-option>
+                <nz-option nzValue="lastWeek" nzLabel="Last Week"></nz-option>
+                <nz-option nzValue="lastMonth" nzLabel="Last Month"></nz-option>
+                <nz-option nzValue="last3Month" nzLabel="Last 3 Month"></nz-option>
+              </nz-select>
+              <x-chartist
+                class="ct-chart height-300"
+                [data]="ordersGraph"
+                type="Line"
+                [options]="chartOptions"
+              >
+              </x-chartist>
+              <div class="row mt-5">
+                <div class="col-lg-3 col-6">
+                  <div class="mb-3">
+                    <div class="font-size-16 mb-2">Revenue</div>
+                    <div class="font-size-20 text-black">
+                      <strong>{{amountInfo.revenue}}</strong>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                  <div class="mb-3">
+                    <div class="font-size-16 mb-2">Tax</div>
+                    <div class="font-size-20 text-black">
+                      <strong>{{amountInfo.tax}}</strong>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                  <div class="mb-3">
+                    <div class="font-size-16 mb-2">Shipping</div>
+                    <div class="font-size-20 text-black">
+                      <strong>{{amountInfo.shipping}}</strong>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                  <div class="mb-3">
+                    <div class="font-size-16 mb-2">Quantity</div>
+                    <div class="font-size-20">
+                      <strong>{{amountInfo.quantity}}</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </nz-tab>
+          </nz-tabset>
+        </div>
+        <nz-tabset>
+          <nz-tab nzTitle="Bestsellers">
+            <nz-table #bestSellersTable [nzData]="bestsellersData" class="utils__scrollTable" [nzScroll]="{x: '100%'}">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Order Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of bestSellersTable.data">
+                  <td>{{item.id}}</td>
+                  <td>
+                    <a class="utils__link--underlined" href="javascript: void(0);">
+                      {{item.product}}
+                    </a>
+                  </td>
+                  <td>
+                    ${{item.price}}
+                  </td>
+                  <td>{{item.orderquantity}}</td>
+              </tr>
+              </tbody>
+            </nz-table>
+          </nz-tab>
+          <nz-tab nzTitle="Most Viewed Products">
+            <nz-table #mostViewedTable [nzData]="mostViewedData" class="utils__scrollTable" [nzScroll]="{x: '100%'}">
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Views</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of mostViewedTable.data">
+                <td>{{item.id}}</td>
+                <td>
+                  <a class="utils__link--underlined" href="javascript: void(0);">
+                    {{item.product}}
+                  </a>
+                </td>
+                <td>
+                  ${{item.price}}
+                </td>
+                <td>{{item.views}}</td>
+              </tr>
+              </tbody>
+            </nz-table>
+          </nz-tab>
+          <nz-tab nzTitle="New Customers">
+            <nz-table #newCustomersTable [nzData]="newCustomersData" class="utils__scrollTable" [nzScroll]="{x: '100%'}">
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Total</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of newCustomersTable.data">
+                <td>{{item.id}}</td>
+                <td>
+                    {{item.name}}
+                </td>
+                <td>
+                  {{item.date}}
+                </td>
+                <td>
+                  {{item.total}}
+                </td>
+              </tr>
+              </tbody>
+            </nz-table>
+          </nz-tab>
+          <nz-tab nzTitle="Top Customers">
+            <nz-table #topCustomersTable [nzData]="topCustomersData" class="utils__scrollTable" [nzScroll]="{x: '100%'}">
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Total</th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of topCustomersTable.data">
+                  <td>{{item.id}}</td>
+                  <td>
+                    {{item.name}}
+                  </td>
+                  <td>
+                    {{item.date}}
+                  </td>
+                  <td>
+                    {{item.total}}
+                  </td>
+                </tr>
+              </tbody>
+            </nz-table>
+          </nz-tab>
+        </nz-tabset>
+      </div>
+      <div class="col-xl-4 col-lg-12">
+        <div class="row mb-5">
+          <div class="col-xl-12 col-lg-6 col-sm-12">
+            <cui-info-card form="stats-large" icon="download" type="primary"></cui-info-card>
+          </div>
+          <div class="col-xl-12 col-lg-6 col-sm-12">
+            <cui-info-card form="stats-large" icon="stack" type="default"></cui-info-card>
+          </div>
+        </div>
+        <div class="row mb-5">
+          <div class="col-lg-12">
+            <div class="font-size-16 text-black mb-3">
+              <strong>Last Orders</strong>
+            </div>
+            <nz-table #lastOrdersTable [nzData]="lastOrdersData" class="utils__scrollTable" [nzScroll]="{x: '100%'}" [nzShowPagination]="false">
+              <thead>
+              <tr>
+                <th>Customers</th>
+                <th>Items</th>
+                <th>Total</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of lastOrdersTable.data">
+                <td>{{item.customer}}</td>
+                <td>
+                  {{item.items}}
+                </td>
+                <td>
+                  {{item.total}}
+                </td>
+              </tr>
+              </tbody>
+            </nz-table>
+          </div>
+        </div>
+        <div class="row mb-5">
+          <div class="col-lg-12">
+            <div class="font-size-16 text-black mb-3">
+              <strong>Last Search Terms</strong>
+            </div>
+            <nz-table #lastSearchTable [nzData]="lastSearchData" class="utils__scrollTable" [nzScroll]="{x: '100%'}" [nzShowPagination]="false">
+              <thead>
+              <tr>
+                <th>Customers</th>
+                <th>Items</th>
+                <th>Total</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of lastSearchTable.data">
+                <td>{{item.searchTerm}}</td>
+                <td>
+                  {{item.result}}
+                </td>
+                <td>
+                  {{item.uses}}
+                </td>
+              </tr>
+              </tbody>
+            </nz-table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

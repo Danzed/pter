@@ -1,0 +1,343 @@
+<div class="row">
+  <div class="col-xl-6 col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="utils__title">
+          <strong>Account Information</strong>
+        </div>
+        <div class="utils__titleDescription">
+          Block with important Account information
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-xl-12">
+            <cui-profile-head-card></cui-profile-head-card>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="utils__title">
+          <strong>Work Progress</strong>
+        </div>
+        <div class="utils__titleDescription">
+          Block with important Account information
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-xl-12">
+            <cui-progress-group></cui-progress-group>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="utils__title">
+          <strong>Employees</strong>
+        </div>
+        <div class="utils__titleDescription">
+          Block with important Account information
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <cui-user-card type="primary" avatarUrl="assets/images/avatars/1.jpg" userName="Artour Aniston"
+                           userPost="Project Manager"></cui-user-card>
+          </div>
+          <div class="col-md-6">
+            <cui-user-card avatarUrl="assets/images/avatars/2.jpg" userName="Kim Mentiso"
+                           userPost="Project Manager"></cui-user-card>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="utils__title">
+          <strong>Task table</strong>
+        </div>
+        <div class="utils__titleDescription">
+          Block with important Account information
+        </div>
+      </div>
+      <div class="card-body">
+        <nz-table
+          [nzData]="taskTableData"
+          [nzShowPagination]="false"
+          class="utils__scrollTable"
+          (nzCurrentPageDataChange)="currentPageDataChange($event)"
+          (nzPageIndexChange)="refreshStatus()"
+          (nzPageSizeChange)="refreshStatus()"
+        >
+          <thead>
+          <tr>
+            <th
+              nzShowCheckbox
+              [(nzChecked)]="allChecked"
+              [nzIndeterminate]="indeterminate"
+              (nzCheckedChange)="checkAll($event)"
+            ></th>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of taskTableData">
+            <td
+              nzShowCheckbox
+              [(nzChecked)]="item.checked"
+              [nzDisabled]="item.disabled"
+              (nzCheckedChange)="refreshStatus()"
+            ></td>
+            <td><a href="javascript: void(0);">{{item.name}}</a></td>
+            <td><a href="javascript: void(0);">{{item.username}}</a></td>
+            <td>
+              <nz-dropdown>
+                <button nz-button nz-dropdown nzSize="small"><span>Action</span> <i nz-icon type="down"></i></button>
+                <ul nz-menu>
+                  <li nz-menu-item>
+                    <a>1st menu item</a>
+                  </li>
+                  <li nz-menu-item>
+                    <a>2nd menu item</a>
+                  </li>
+                  <li nz-menu-item>
+                    <a>3rd menu item</a>
+                  </li>
+                </ul>
+              </nz-dropdown>
+            </td>
+          </tr>
+          </tbody>
+        </nz-table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="utils__title">
+          <strong>Information Cards</strong>
+        </div>
+        <div class="utils__titleDescription">
+          Block with important Account information
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <cui-info-card form="interactive" icon="database" type="danger"></cui-info-card>
+          </div>
+          <div class="col-md-6">
+            <cui-info-card form="interactive" icon="database" btnType="success" type="success"></cui-info-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-6 col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="utils__title">
+          <strong>Server Info</strong>
+        </div>
+        <div class="utils__titleDescription">
+          Block with important Server Info informastion
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-6">
+            <cui-slider-card></cui-slider-card>
+          </div>
+          <div class="col-lg-6">
+            <cui-slider-card></cui-slider-card>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="utils__title">
+          <strong>Server Statistics</strong>
+        </div>
+        <div class="utils__titleDescription">
+          Block with important Server Info information
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-6">
+            <cui-info-card form="stats" icon="database" type="primary"></cui-info-card>
+            <cui-info-card form="stats" icon="users" type="empty"></cui-info-card>
+          </div>
+          <div class="col-lg-6">
+            <cui-info-card form="stats" icon="bullhorn" type="success"></cui-info-card>
+            <cui-info-card form="stats" icon="price-tags" type="empty"></cui-info-card>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="utils__title">
+          <strong>Server Configuration</strong>
+        </div>
+        <div class="utils__titleDescription">
+          Block with important Server Info information
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="mb-5">
+          <nz-slider [nzMarks]="rangeMarks" [nzDefaultValue]="rangeSlider.first"></nz-slider>
+        </div>
+        <div class="mb-5">
+          <nz-slider [nzMarks]="rangeMarks" nzRange [nzDefaultValue]="rangeSlider.second"></nz-slider>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="utils__title">
+          <strong>Week Revenue Statistics, Billions</strong>
+        </div>
+        <cui-donut type="primary" name="Nuts"></cui-donut>
+        <cui-donut type="success" name="Apples"></cui-donut>
+        <cui-donut color="yellow" name="Peaches"></cui-donut>
+      </div>
+      <div class="card-body">
+        <x-chartist
+          class="ct-chart height-300"
+          [data]="weekChartData"
+          type="Line"
+          [options]="weekChartOptions"
+        >
+        </x-chartist>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="utils__title">
+          <strong>Month Site Visits Growth, %</strong>
+        </div>
+        <cui-donut type="primary" name="Income"></cui-donut>
+        <cui-donut type="success" name="Outcome"></cui-donut>
+      </div>
+      <div class="card-body">
+        <x-chartist
+          class="ct-chart height-300"
+          [data]="monthChartData"
+          type="Bar"
+          [options]="monthChartOptions"
+        >
+        </x-chartist>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="utils__title">
+          <strong>Chat</strong>
+        </div>
+        <div class="utils__titleDescription">
+          Block with important Server Info information
+        </div>
+      </div>
+      <div class="card-body">
+        <cui-chat></cui-chat>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-lg-3">
+            <cui-info-card form="bordered" icon="home" type="danger"></cui-info-card>
+          </div>
+          <div class="col-lg-3">
+            <cui-info-card form="bordered" icon="key" type="primary"></cui-info-card>
+          </div>
+          <div class="col-lg-3">
+            <cui-info-card form="bordered" icon="play2" type="warning"></cui-info-card>
+          </div>
+          <div class="col-lg-3">
+            <cui-info-card form="bordered" icon="database" type="success"></cui-info-card>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <nz-table [nzData]="displayDatabaseData" [nzShowPagination]="false" class="utils__scrollTable">
+          <thead (nzSortChange)="sort($event)" nzSingleSort>
+          <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th nzShowSort nzSortKey="age">Age</th>
+            <th>Date</th>
+            <th nzShowSort nzSortKey="salary">Salary</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of databaseData">
+            <td>{{item.name}}</td>
+            <td>{{item.position}}</td>
+            <td>{{item.office}}</td>
+            <td>{{item.age}}</td>
+            <td>{{item.date}}</td>
+            <td>{{item.salary}}</td>
+          </tr>
+          </tbody>
+        </nz-table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="utils__title">
+          <strong>Calendar</strong>
+        </div>
+        <div class="utils__titleDescription">
+          Block with important Calendar information
+        </div>
+      </div>
+      <div class="card-body">
+        <nz-calendar>
+          <ul *nzDateCell="let date" class="events">
+            <ng-container [ngSwitch]="date.getDate()">
+              <ng-container *ngSwitchCase="8">
+                <li *ngFor="let item of calendarData.eight">
+                  <nz-badge [nzStatus]="item.type" [nzText]="item.content"></nz-badge>
+                </li>
+              </ng-container>
+              <ng-container *ngSwitchCase="10">
+                <li *ngFor="let item of calendarData.ten">
+                  <nz-badge [nzStatus]="item.type" [nzText]="item.content"></nz-badge>
+                </li>
+              </ng-container>
+              <ng-container *ngSwitchCase="11">
+                <li *ngFor="let item of calendarData.eleven">
+                  <nz-badge [nzStatus]="item.type" [nzText]="item.content"></nz-badge>
+                </li>
+              </ng-container>
+            </ng-container>
+          </ul>
+          <ng-container *nzMonthCell="let month">
+            <div *ngIf="getMonthData(month) as monthData" class="notes-month">
+              <section>{{ monthData }}</section>
+              <span>Backlog number</span>
+            </div>
+          </ng-container>
+        </nz-calendar>
+      </div>
+    </div>
+  </div>
+</div>

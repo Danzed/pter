@@ -1,0 +1,124 @@
+<div class="card">
+  <div class="card-header">
+    <div class="utils__title">
+      <strong>Product Details</strong>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="cui-product-details-item">
+          <div class="cui-product-details-img">
+            <div class="cui-product-details-status">
+              <span class="cui-product-details-status-title">New</span>
+            </div>
+            <div class="cui-product-details-like">
+              <i class="icmn-heart"></i>
+            </div>
+            <nz-carousel  #productImagesCarousel [nzEffect]="'fade'" [nzEnableSwipe]="true">
+              <div nz-carousel-content *ngFor="let image of images">
+                <img [src]="image" class="cui-product-details-img">
+              </div>
+            </nz-carousel>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="cui-product-details-breadcrumbs">
+          <nz-breadcrumb [nzSeparator]="''">
+            <nz-breadcrumb-item class="cui-product-details-breadcrumb-item-wrap">
+              <span class="cui-product-details-breadcrumb-item">
+                <a href="javascript: void(0);">Catalog</a>
+              </span>
+            </nz-breadcrumb-item>
+            <nz-breadcrumb-item class="cui-product-details-breadcrumb-item-wrap">
+              <span class="cui-product-details-breadcrumb-item">
+                <a href="javascript: void(0);">Chairs</a>
+              </span>
+            </nz-breadcrumb-item>
+            <nz-breadcrumb-item class="cui-product-details-breadcrumb-item-wrap">
+              <span class="cui-product-details-breadcrumb-item">
+                <a href="javascript: void(0);">White</a>
+              </span>
+            </nz-breadcrumb-item>
+          </nz-breadcrumb>
+        </div>
+        <div class="cui-product-details-sku">
+          SKU: {{sku}}
+          <br>
+          <div class="cui-product-details-raiting">
+            <nz-rate [ngModel]="rate" nzAllowHalf></nz-rate>
+          </div>
+        </div>
+        <h4 class="cui-product-details-main-title">
+          <strong>{{name}}</strong>
+        </h4>
+        <div class="cui-product-details-price">
+          ${{price}}
+          <div *ngIf="oldPrice" class="cui-product-details-price-before">${{oldPrice}}</div>
+        </div>
+        <hr>
+        <div class="mb-1 cui-product-details-descr">
+          <p>{{shortDescr}}</p>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="cui-product-details-option-title">
+              Color
+            </div>
+            <div class="cui-product-details-option">
+              <nz-select style="width: 120px;" [(ngModel)]="colorValue" [nzSize]="'small'">
+                <nz-option nzValue="Red" nzLabel="Red"></nz-option>
+                <nz-option nzValue="Black" nzLabel="Black"></nz-option>
+                <nz-option nzValue="Cyan" nzLabel="Cyan"></nz-option>
+                <nz-option nzValue="Blue" nzLabel="Blue"></nz-option>
+              </nz-select>
+            </div>
+            <div class="cui-product-details-option-title">
+              Sizes
+            </div>
+            <div class="cui-product-details-sizes">
+              <button nzTitle="Size S" nzPlacement="top" nz-button nz-tooltip>
+                <span>S</span>
+              </button>
+              <button nzTitle="Size M" nzPlacement="top" nz-button nz-tooltip>
+                <span>M</span>
+              </button>
+              <button nzTitle="Size XL" nzPlacement="top" nz-button nz-tooltip>
+                <span>XL</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="cui-product-details-controls">
+          <button nz-button nzType="primary" [nzSize]="'large'">
+            <i nz-icon type="shopping-cart" theme="outline"></i>
+            Buy now
+          </button>
+          <a href="javascript: void(0);" class="btn btn-link">
+            <i class="icmn-heart mr-1"></i>
+            Add to Wishlist
+          </a>
+          <a href="javascript: void(0);" class="btn btn-link">
+            <i class="icmn-stats-bars mr-1"></i>
+            Add to Compare
+          </a>
+        </div>
+        <div class="cui-product-details-info">
+          <nz-tabset>
+            <nz-tab nzTitle="Information">
+              <div class="mb-1" *ngFor="let property of properties">
+                <strong class="mr-1">{{property.name}}: </strong>
+                {{property.value}}
+              </div>
+            </nz-tab>
+            <nz-tab nzTitle="Description">
+              <p>{{description}}</p>
+            </nz-tab>
+          </nz-tabset>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

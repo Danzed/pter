@@ -1,0 +1,109 @@
+<div class="card">
+  <div class="card-header">
+    <div class="utils__title">
+      <strong>GitHub Explore</strong>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="cui-github-explore-container">
+      <div class="mb-3">
+        <nz-tabset [nzType]="'card'">
+          <nz-tab *ngFor="let tab of tabs" [nzTitle]="titleTemplate">
+            <ng-template #titleTemplate>
+              <i [class]="tab.icon"></i>{{ tab.name }}
+            </ng-template>
+          </nz-tab>
+        </nz-tabset>
+      </div>
+      <div class="cui-github-explore-descr clearfix">
+        <p class="cui-github-explore-descr-text">{{projectData.description}}</p>
+        <span class="pull-right">
+          <button nz-button>Edit</button>
+        </span>
+      </div>
+      <div class="cui-github-explore-overall-data">
+        <ul class="cui-github-explore-overall-data-list">
+          <li class="cui-github-explore-overall-data-item">
+            <a href="javascript: void(0);">
+              <i class="fa fa-check-circle-o mr-2"></i>
+              {{projectData.commits}} commits
+            </a>
+          </li>
+          <li class="cui-github-explore-overall-data-item">
+            <a href="javascript: void(0);">
+              <i class="fa fa-th-list mr-2"></i>
+              {{projectData.branches}} branch
+            </a>
+          </li>
+          <li class="cui-github-explore-overall-data-item">
+            <a href="javascript: void(0);">
+              <i class="fa fa-window-maximize mr-2"></i>
+              {{projectData.releases}} releases
+            </a>
+          </li>
+          <li class="cui-github-explore-overall-data-item">
+            <a href="javascript: void(0);">
+              <i class="fa fa-bell mr-2"></i>
+              {{projectData.contributors}} contributors
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="clearfix">
+        <div class="cui-github-explore-sort-left">
+          <nz-select style="width: 200px;" nzShowSearch nzAllowClear nzPlaceHolder="Select a type" class="mr-2 mb-2">
+            <nz-option nzLabel="HTML" nzValue="HTML"></nz-option>
+            <nz-option nzLabel="CSS" nzValue="CSS"></nz-option>
+            <nz-option nzLabel="JavaScript" nzValue="JavaScript"></nz-option>
+          </nz-select>
+          <button nz-button>New request</button>
+        </div>
+        <div class="cui-github-explore-sort-right">
+          <div class="cui-github-explore-sort-option mr-2 mb-2">
+            <nz-button-group>
+              <button nz-button nzType="default">Create new file</button>
+              <button nz-button nzType="default">Upload files</button>
+              <button nz-button nzType="default">Find file</button>
+            </nz-button-group>
+          </div>
+          <div class="cui-github-explore-sort-option mb-2">
+            <nz-dropdown>
+              <button nz-button nz-dropdown><span>Button</span> <i nz-icon type="down"></i></button>
+              <ul nz-menu>
+                <li nz-menu-item>
+                  <a>1st menu item</a>
+                </li>
+                <li nz-menu-item>
+                  <a>2nd menu item</a>
+                </li>
+                <li nz-menu-item>
+                  <a>3rd menu item</a>
+                </li>
+              </ul>
+            </nz-dropdown>
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover text-nowrap">
+          <tbody>
+            <tr *ngFor="let item of projectData.explore">
+              <td class="cui-github-explore-nav-icon">
+                <i class="fa" [ngClass]="[item.type === 'folder' ? 'fa-folder' : 'fa-file-o']"></i>
+              </td>
+              <td>
+                <a href="javascript: void(0);">
+                  {{item.name}}
+                </a>
+              </td>
+              <td>
+                {{item.info}}
+              </td>
+              <td class="cui-github-explore-nav-time">{{item.time}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

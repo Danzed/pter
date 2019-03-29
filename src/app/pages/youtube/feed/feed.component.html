@@ -1,0 +1,32 @@
+<section class="card">
+  <div class="card-header">
+    <div class="utils__title">
+      <strong>YouTube Feed</strong>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="feed">
+      <div class="partition" *ngFor="let partition of partitions">
+        <h2 class="title">
+          <img [src]="partition.cover" class="titleThumb mr-3" *ngIf="partition.cover">
+          {{partition.name}}
+        </h2>
+        <ul class="partitionContent">
+          <li class="item" *ngFor="let video of partition.videos">
+            <a href="javascript: void(0);" class="itemLink">
+              <img [src]="video.cover" [alt]="video.name" class="itemThumb">
+              <div class="itemDescr">
+                <span class="itemName">{{video.name}}</span>
+                <span class="itemAuthor">{{video.author}}</span>
+                <span class="text-muted itemDescr">{{video.views}} views</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="mb-5">
+        <nz-pagination [nzPageIndex]="1" [nzTotal]="50"></nz-pagination>
+      </div>
+    </div>
+  </div>
+</section>

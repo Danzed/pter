@@ -1,0 +1,37 @@
+@import 'src/assets/styles/mixins.scss';
+
+.cui-cart {
+  &-steps {
+    margin-bottom: rem(20);
+
+    ::ng-deep {
+      .ant-steps-item-process {
+        .ant-steps-icon {
+          color: $primary !important;
+        }
+      }
+    }
+  }
+
+  &-step {
+    ::ng-deep {
+      .ant-steps-item-icon {
+        width: auto;
+        height: auto;
+        font-size: rem(40);
+        background: none;
+        border: none;
+      }
+    }
+  }
+
+  &-steps-action {
+    text-align: center;
+    margin-top: rem(20);
+
+    button {
+      margin-left: rem(10);
+      margin-right: rem(10);
+    }
+  }
+}

@@ -1,0 +1,81 @@
+<div class="card cui-messaging">
+  <div class="cui-messaging-sidebar">
+    <div class="cui-messaging-sidebar-header">
+      <nz-input-group [nzSuffix]="suffixIconSearch" style="width: 100%">
+        <input type="text" nz-input placeholder="Search chat ...">
+      </nz-input-group>
+      <ng-template #suffixIconSearch>
+        <i nz-icon type="search"></i>
+      </ng-template>
+    </div>
+    <div class="cui-messaging-tabs">
+      <nz-tabset nzTabPosition="left" [nzSelectedIndex]="activeChatIndex">
+        <nz-tab [nzTitle]="chatTabTemplate" *ngFor="let chat of chats" >
+          <ng-template #chatTabTemplate>
+            <div class="cui-messaging-tab" (click)="changeChatData(chat.companionName)">
+              <div class="cui-messaging-tab-avatar">
+                <cui-avatar [src]="chat.companionImg" [size]="50" [bordered]="true" borderColor="#fff"></cui-avatar>
+              </div>
+              <div class="cui-messaging-tab-content">
+                <small class="cui-messaging-tab-time">8:34PM</small>
+                <div class="cui-messaging-tab-name">{{chat.companionName}}</div>
+                <div class="cui-messaging-tab-text"
+                     [innerHtml]="chat.chatMessages[chat.chatMessages.length-1].content"></div>
+              </div>
+            </div>
+          </ng-template>
+        </nz-tab>
+      </nz-tabset>
+    </div>
+  </div>
+  <div class="cui-messaging-content">
+    <div class="card-header clearfix">
+      <h4 class="mt-1 mb-1 text-black d-inline-block">
+        <strong>{{selectedChatData.companionName }}</strong>
+      </h4>
+      <div class="pull-right">
+        <nz-dropdown>
+          <button nz-button nz-dropdown>
+            Actions <i nz-icon type="down"></i>
+          </button>
+          <ul nz-menu nzSelectable>
+            <li nz-menu-item>
+              <i nz-icon [type]="'sound'"></i> Mute
+            </li>
+            <li nz-menu-item>
+              <i nz-icon [type]="'delete'"></i> Delete Post
+            </li>
+            <li nz-menu-item>
+              <i nz-icon [type]="'setting'"></i> Settings
+            </li>
+          </ul>
+        </nz-dropdown>
+      </div>
+    </div>
+    <div class="cui-messaging-content-wrapper">
+      <div class="cui-messaging-chat height-700">
+        <div class="clearfix cui-messaging-item" *ngFor="let message of selectedChatData.chatMessages" [ngClass]="[chatOwner !== message.username ? 'cui-messaging-item-right' : '']">
+          <div class="cui-messaging-item-avatar">
+            <cui-avatar [src]="message.img" size="50" [bordered]="false"></cui-avatar>
+          </div>
+          <div class="cui-messaging-item-content">
+            <strong>{{message.username}}</strong>
+            <div [innerHtml]="message.content"></div>
+          </div>
+        </div>
+      </div>
+      <form class="form-group mt-4 mb-3">
+        <textarea rows="4" nz-input placeholder="Type message..." class="form-control adjustable-textarea"></textarea>
+        <div class="mt-3">
+          <button type="submit" class="btn btn-primary width-200">
+            <i class="fa fa-send mr-2"></i>
+            Send
+          </button>
+          <button class="btn btn-link" type="button">
+            Attach File
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

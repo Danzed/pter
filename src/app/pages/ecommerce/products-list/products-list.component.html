@@ -1,0 +1,70 @@
+<div class="card">
+  <div class="card-header">
+    <div class="utils__title">
+      <strong>
+        Products List
+      </strong>
+    </div>
+  </div>
+  <div class="card-body">
+    <nz-table #productsTable [nzData]="displayProductsData">
+      <thead (nzSortChange)="sort($event)" nzSingleSort>
+      <tr>
+        <th nzShowSort nzSortKey="id">ID</th>
+        <th>Thumbnail</th>
+        <th nzShowSort nzSortKey="name">Name</th>
+        <th nzShowSort nzSortKey="type">Type</th>
+        <th nzShowSort nzSortKey="attribute">Attribute Set</th>
+        <th nzShowSort nzSortKey="sku">SKU</th>
+        <th nzShowSort nzSortKey="price">Price</th>
+        <th nzShowSort nzSortKey="quantity">Quantity</th>
+        <th nzShowSort nzSortKey="status">Status</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of productsTable.data">
+        <td>
+          <a href="javascript: void(0);" class="utils__link--underlined">
+            #{{item.id}}
+          </a>
+        </td>
+        <td>
+          <a href="javascript: void(0);" class="cui-product-list-thumbnail">
+            <img [src]="item.thumbnail" />
+          </a>
+        </td>
+        <td>
+          <a class="utils__link--underlined" href="javascript: void(0);">
+            {{item.name}}
+          </a>
+        </td>
+        <td>
+          {{item.attribute}}
+        </td>
+        <td>
+          {{item.type}}
+        </td>
+        <td>
+          {{item.sku}}
+        </td>
+        <td>
+          ${{item.price}}
+        </td>
+        <td>
+          {{item.quantity}}
+        </td>
+        <td>
+          <span [ngClass]="[item.status === 'Disabled' ? 'badge badge-danger font-size-12' : 'badge badge-success font-size-12']">
+            {{item.status}}
+          </span>
+        </td>
+        <td>
+          <button nz-button class="mr-1" nzSize="small"><i nz-icon type="edit" theme="outline"></i> View</button>
+          <button nz-button class="mr-1" nzSize="small"><i nz-icon type="delete" theme="outline"></i> Remove</button>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>

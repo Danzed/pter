@@ -1,0 +1,170 @@
+@import 'src/assets/styles/mixins.scss';
+
+.cui-github-discuss-container {
+  max-width: rem(1000);
+  margin: 0 auto;
+}
+
+.cui-github-discuss-header {
+  position: relative;
+  border-bottom: 1px solid rgba($black, 0.125);
+  padding-bottom: rem(15);
+  margin-bottom: rem(20);
+}
+
+.cui-github-discuss-title {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.cui-github-discuss-title-text {
+  font-size: rem(32);
+  margin-right: auto;
+}
+
+.cui-github-discuss-open {
+  margin-top: rem(6);
+  margin-bottom: rem(10);
+}
+
+.cui-github-discuss-status {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: rem(10);
+  cursor: default !important;
+
+  ::ng-deep {
+    .fa {
+      font-size: rem(17);
+    }
+  }
+}
+
+.cui-github-discuss-meta-text {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: rem(6);
+}
+
+.cui-github-discuss-comment-avatar {
+  float: left;
+}
+
+.cui-github-discuss-comment-item {
+  margin-bottom: rem(20);
+}
+
+.cui-github-discuss-content-wrapper {
+  border-radius: 5px;
+  margin-left: rem(70);
+  border: 1px solid rgba(14, 11, 32, 0.15);
+}
+
+.cui-github-discuss-comments-count,
+.cui-github-discuss-create-date {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.cui-github-discuss-sidebar-item {
+  padding-top: rem(15);
+  border-bottom: 1px solid rgba($black, 0.15);
+  padding-bottom: rem(15);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.cui-github-discuss-sidebar-head {
+  font-size: rem(13);
+  font-weight: bold;
+  color: $black;
+  margin-bottom: rem(10);
+}
+
+.cui-github-discuss-participants-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0;
+}
+
+.cui-github-discuss-participants-item {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: rem(3);
+  margin-bottom: rem(3);
+}
+
+.cui-github-discuss-comment-head {
+  padding-top: rem(10);
+  padding-left: rem(15);
+  padding-right: rem(15);
+  padding-bottom: rem(10);
+  background-color: rgba($gray-lighten-more, 0.7);
+  border-bottom: 1px solid rgba($black, 0.15);
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 11px;
+    right: 100%;
+    left: -16px;
+    display: block;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    border-color: transparent;
+    border-style: solid solid outset;
+  }
+
+  &::before {
+    border-width: 8px;
+    border-right-color: #d1d5da;
+  }
+
+  &::after {
+    margin-top: 1px;
+    margin-left: 2px;
+    border-width: 7px;
+    border-right-color: #f6f8fa;
+  }
+}
+
+.cui-github-discuss-empty-comment-head {
+  background-color: transparent;
+  padding: 0;
+  border-bottom: none;
+
+  &::after {
+    border-right-color: $white;
+  }
+}
+
+.cui-github-discuss-add-comment {
+  margin-bottom: rem(40);
+
+  .cui-github-discuss-comment-head {
+    padding-top: rem(5);
+  }
+
+  .cui-github-discuss-comment-bottom {
+    padding-top: rem(10);
+    border-top: 1px solid $gray-border;
+  }
+}
+
+.cui-github-discuss-comment-content {
+  padding: rem(15);
+}
+
+.cui-github-discuss-comment-bottom {
+  padding-left: rem(15);
+  padding-right: rem(15);
+  padding-bottom: rem(10);
+}

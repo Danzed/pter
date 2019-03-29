@@ -1,0 +1,83 @@
+<!-- <div class="title login-heading">
+  <h1>
+    <strong>WELCOME TO CLEAN UI ANGULAR - ANGULAR NGRX ADMIN TEMPLATE</strong>
+  </h1>
+  <p>
+    Pluggable enterprise-level angular application framework.
+    <br />
+    An excellent front-end solution for web applications built upon Ant Design and Angular.
+    <br />
+    Credentials for testing purposes - <strong>admin@mediatec.org</strong> /
+    <strong>cleanui</strong>
+  </p>
+</div> -->
+<div class="block">
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="inner">
+        <div class="form">
+          <h4 class="text-uppercase">
+            <strong>¡Bienvenido!</strong>
+          </h4>
+          <br />
+          <form nz-form [nzLayout]="'vertical'" [formGroup]="form" (ngSubmit)="submitForm()" role="form">
+            <nz-form-item>
+              <nz-form-label nzFor="email">Email</nz-form-label>
+              <nz-form-control>
+                <nz-input-group [nzPrefix]="prefixUser">
+                  <input nz-input id="email" formControlName="email">
+                </nz-input-group>
+                <nz-form-explain *ngIf="email.dirty && email.errors">
+                  Por favor ingresa tu Email
+                </nz-form-explain>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label nzFor="password">Contraseña</nz-form-label>
+              <nz-form-control>
+                <nz-input-group [nzPrefix]="prefixLock">
+                  <input type="password" nz-input id="password" formControlName="password">
+                </nz-input-group>
+                <nz-form-explain *ngIf="password.dirty && password.errors">
+                  Por favor ingresa tu Email
+                </nz-form-explain>
+              </nz-form-control>
+            </nz-form-item>
+            <div>
+              <a href routerLink="/user/forgot"
+                class="login-form-forgot utils__link--blue utils__link--underlined">Obtén tu contraseña</a>
+            </div>
+            <div class="form-actions">
+              <button nz-button nzType="primary" class="width-150 mr-3">
+                Iniciar Sesión
+              </button>
+              <!-- <span class="register-link">
+                <a href="javascript: void(0);" class="utils__link--blue utils__link--underlined">Register</a>
+                if you don&#39;t have an account
+              </span> -->
+            </div>
+            <!-- <div class="form-group">
+              <p>Use another service to Sign In</p>
+              <div class="mt-2">
+                <a href="javascript: void(0);" class="btn btn-icon mr-2">
+                  <i class="icmn-facebook"></i>
+                </a>
+                <a href="javascript: void(0);" class="btn btn-icon mr-2">
+                  <i class="icmn-google"></i>
+                </a>
+                <a href="javascript: void(0);" class="btn btn-icon mr-2">
+                  <i class="icmn-windows"></i>
+                </a>
+                <a href="javascript: void(0);" class="btn btn-icon mr-2">
+                  <i class="icmn-twitter"></i>
+                </a>
+              </div>
+            </div> -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #prefixUser><i nz-icon type="user"></i></ng-template>
+<ng-template #prefixLock><i nz-icon type="lock"></i></ng-template>

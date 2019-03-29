@@ -1,0 +1,131 @@
+<section class="card">
+  <div class="card-header">
+    <div class="utils__title">
+      <strong>GitHub Discussion</strong>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="cui-github-discuss-container">
+      <div class="mb-3">
+        <nz-tabset [nzType]="'card'" [(nzSelectedIndex)]="selectedIndex">
+          <nz-tab *ngFor="let tab of tabs" [nzTitle]="titleTemplate">
+            <ng-template #titleTemplate>
+              <i [class]="tab.icon + ' mr-2'"></i>{{ tab.name }}
+            </ng-template>
+          </nz-tab>
+        </nz-tabset>
+      </div>
+      <div class="cui-github-discuss-header clearfix">
+        <div class="cui-github-discuss-title">
+          <h1 class="cui-github-discuss-title-text">{{discuss.title}}</h1>
+          <div class="cui-github-discuss-open">
+            <button nz-button nzType="primary" nzSize="small">New discussion</button>
+          </div>
+        </div>
+        <div>
+          <span class="cui-github-discuss-status btn btn-success btn-sm">
+            <i class="fa fa-check-circle-o mr-2"></i>
+            Open
+          </span>
+          <div class="cui-github-discuss-meta-text">
+            <a href="javascript: void(0);" class="mr-1">
+              {{discuss.authorName}}
+            </a>
+            opened this descussion on
+            <span class="ml-1">{{discuss.date}}</span> ·
+            <span class="ml-1">{{discuss.commentsCount}} comments</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-10">
+          <div class="cui-github-discuss-comment-item" *ngFor="let comment of discuss.comments">
+            <div class="mb-0 pb-0 clearfix">
+              <div class="cui-github-discuss-comment-avatar">
+                <cui-avatar [src]="comment.avatar" [size]="50"></cui-avatar>
+              </div>
+              <div class="cui-github-discuss-content-wrapper">
+                <div class="cui-github-discuss-comment-head">
+                  <div class="pull-right">
+                    <nz-dropdown>
+                      <a nz-dropdown>
+                        Actions <i nz-icon type="down"></i>
+                      </a>
+                      <ul nz-menu nzSelectable>
+                        <li nz-menu-item>
+                          <i nz-icon [type]="'edit'"></i> Edit Post
+                        </li>
+                        <li nz-menu-item>
+                          <i nz-icon [type]="'delete'"></i> Delete Post
+                        </li>
+                        <li nz-menu-item>
+                          <i nz-icon [type]="'frown-o'"></i> Mark as a Spam
+                        </li>
+                      </ul>
+                    </nz-dropdown>
+                  </div>
+                  <strong>{{comment.authorName}}</strong> posted:
+                  <small class="text-muted ml-2">{{comment.date}}</small>
+                </div>
+                <div class="cui-github-discuss-comment-content" [innerHtml]="comment.content"></div>
+                <div class="cui-github-discuss-comment-bottom">
+                  <a href="javascript: void(0);" class="mr-2">
+                    <i class="icmn-heart mr-1"></i>
+                    <span>{{comment.likesCount}} Likes</span>
+                  </a>
+                  <a href="javascript: void(0);">
+                    <i class="icmn-reply mr-1"></i>
+                    Reply
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="cui-github-discuss-add-comment clearfix">
+            <div class="cui-github-discuss-comment-avatar">
+              <cui-avatar [size]="50" [src]="discuss.authorImg"></cui-avatar>
+            </div>
+            <div class="cui-github-discuss-content-wrapper">
+              <div class="cui-github-discuss-comment-head cui-github-discuss-empty-comment-head p-3">
+                <quill-editor [style]="{height: '200px'}"></quill-editor>
+              </div>
+              <div class="cui-github-discuss-comment-bottom">
+                <button nz-button nzType="primary">Comment</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2">
+          <div class="cui-github-discuss-sidebar-item">
+            <div class="cui-github-discuss-sidebar-head">Assignees</div>
+            <div>No one assigned</div>
+          </div>
+          <div class="cui-github-discuss-sidebar-item">
+            <div class="cui-github-discuss-sidebar-head">Labels</div>
+            <div>None yet</div>
+          </div>
+          <div class="cui-github-discuss-sidebar-item">
+            <div class="cui-github-discuss-sidebar-head">Projects</div>
+            <div>None yet</div>
+          </div>
+          <div class="cui-github-discuss-sidebar-item">
+            <div class="cui-github-discuss-sidebar-head">Milenstone</div>
+            <div>No one assigned</div>
+          </div>
+          <div class="cui-github-discuss-sidebar-item">
+            <div class="cui-github-discuss-sidebar-head">Notifications</div>
+            <div>You’re ignoring this thread.</div>
+          </div>
+          <div class="cui-github-discuss-sidebar-item">
+            <div class="cui-github-discuss-sidebar-head">Participants</div>
+            <ul class="cui-github-discuss-participants-list">
+              <li class="cui-github-discuss-participants-item" *ngFor="let participant of discuss.participants">
+                <cui-avatar [size]="25" [src]="participant"></cui-avatar>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

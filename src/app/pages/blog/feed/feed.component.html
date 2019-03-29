@@ -1,0 +1,156 @@
+<section class="card">
+  <div class="card-header">
+    <div class="utils__title">
+      <strong>Blog Feed</strong>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="blogFeed">
+      <div class="row">
+        <div class="col-lg-8">
+          <main>
+            <article class="article" *ngFor="let article of articlesData">
+              <div class="information">
+                <div class="title">
+                  <h1>
+                    <a href="javascript: void(0);">{{article.name}}</a>
+                  </h1>
+                </div>
+                <ul class="meta">
+                  <li class="metaInf">
+                    <span>
+                      Post By <a href="javascript: void(0);">{{article.author}}</a>
+                    </span>
+                  </li>
+                  <li class="metaInf">
+                    <span class="articleDate">On {{article.date}}</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="articleMedia">
+                <a href="javascript: void(0);" class="link">
+                  <img [src]="article.cover" [alt]="article.name" />
+                </a>
+              </div>
+              <div class="content">
+                <div *ngIf="article.shortContent" [innerHTML]="article.shortContent"></div>
+                <div class="articleMore">
+                  <button nz-button nzType="primary">
+                    Read more
+                    <i class="ml-2 fa fa-angle-right" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+              <footer class="footer">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="hashtags">
+                      <a href="javascript: void(0);" *ngFor="let tag of article.tags">
+                        {{tag}}
+                      </a>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <ul class="share">
+                      <li class="shareItem">
+                        <a href="javascript: void(0);">
+                          <i class="fa fa-facebook"></i>
+                        </a>
+                      </li>
+                      <li class="shareItem">
+                        <a href="javascript: void(0);">
+                          <i class="fa fa-twitter"></i>
+                        </a>
+                      </li>
+                      <li class="shareItem">
+                        <a href="javascript: void(0);">
+                          <i class="fa fa-pinterest-p"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </footer>
+            </article>
+          </main>
+          <div class="mb-5">
+            <nz-pagination [nzPageIndex]="1" [nzTotal]="50"></nz-pagination>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <aside class="sidebar">
+            <div class="partition">
+              <div class="partitionHead">
+                <span class="partitionName">Search</span>
+              </div>
+              <div class="input-group">
+                <nz-input-group [nzSuffix]="suffixIconSearch">
+                  <input type="text" nz-input placeholder="input search text">
+                </nz-input-group>
+                <ng-template #suffixIconSearch>
+                  <i nz-icon type="search"></i>
+                </ng-template>
+              </div>
+            </div>
+            <div class="partition">
+              <div class="partitionHead">
+                <span class="partitionName">Categories</span>
+              </div>
+              <ul class="categoriesList">
+                <li class="categoriesItem" *ngFor="let category of articlesCategories">
+                  <a class="categoriesLink" href="javascript: void(0);">
+                    {{category}}
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="partition">
+              <div class="partitionHead">
+                <span class="partitionName">Latest post</span>
+              </div>
+              <article class="latestPost" *ngFor="let latestArticle of latesArticlesData">
+                <div class="latestImg">
+                  <a href="javascript: void(0);">
+                    <img [src]="latestArticle.cover" alt={{latestArticle.name}} />
+                  </a>
+                </div>
+                <div class="latestData">
+                  <div class="latestName">
+                    <h2>
+                      <a href="javascript: void(0);">{{latestArticle.name}}</a>
+                    </h2>
+                  </div>
+                  <ul class="latestArticleMeta meta">
+                    <li class="metaInf">
+                      <span class="articleAuthor">
+                        Post By <a href="javascript: void(0);">{{latestArticle.author}}</a>
+                      </span>
+                    </li>
+                    <li class="metaInf">
+                      <span class="articleDate">
+                        On {{latestArticle.date}}
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </article>
+            </div>
+            <div class="partition">
+              <div class="partitionHead">
+                <span class="partitionName">Subscribe</span>
+              </div>
+              <div class="input-group">
+                <nz-input-group [nzAddOnAfter]="addOnAfterIconTemplate">
+                  <input type="text" nz-input placeholder="Email">
+                </nz-input-group>
+                <ng-template #addOnAfterIconTemplate>
+                  <i nz-icon type="mail"></i>
+                </ng-template>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,307 @@
+<section class="card">
+  <div class="card-header">
+    <div class="utils__title">
+      <strong>Blog Post</strong>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="blogFeed">
+      <div class="row">
+        <div class="col-lg-8">
+          <article class="article">
+            <div class="information">
+              <div class="title">
+                <h1>
+                  <a href="javascript: void(0);">{{articleData.name}}</a>
+                </h1>
+              </div>
+              <ul class="meta">
+                <li class="metaInf">
+                  <span class="articleAuthor">
+                    Post By <a href="javascript: void(0);">{{articleData.author}}</a>
+                  </span>
+                </li>
+                <li class="metaInf">
+                  <span class="articleDate">On {{articleData.date}}</span>
+                </li>
+              </ul>
+            </div>
+            <div class="content" [innerHtml]="articleData.content"></div>
+            <footer class="footer">
+              <div class="row">
+                <div class="col-8">
+                  <div class="hashtags">
+                    <a href="javascript: void(0);" *ngFor="let tag of articleData.tags">
+                      {{tag}}
+                    </a>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <ul class="share">
+                    <li class="shareItem">
+                      <a href="javascript: void(0);">
+                        <i class="fa fa-facebook"></i>
+                      </a>
+                    </li>
+                    <li class="shareItem">
+                      <a href="javascript: void(0);">
+                        <i class="fa fa-twitter"></i>
+                      </a>
+                    </li>
+                    <li class="shareItem">
+                      <a href="javascript: void(0);">
+                        <i class="fa fa-pinterest-p"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </footer>
+          </article>
+          <div class="authorCard clearfix">
+            <div class="authorPhoto">
+              <cui-avatar [src]="articleData.authorAvatar" [size]="110"></cui-avatar>
+            </div>
+            <div class="authorInf">
+              <span class="authorName">{{articleData.author}}</span>
+              <p class="authorWords">&ldquo;{{articleData.authorStatus}}&rdquo;</p>
+              <div class="blog-feed__author-profile">
+                <a
+                  href="javascript: void(0);"
+                  class="blog-feed__author-profile-btn btn btn-sm btn-primary"
+                >
+                  View Profile
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="mb-4">
+            <div class="commentsTitle">Leave a comment</div>
+            <div class="addCommentForm">
+              <form nz-form class="login-form">
+                <nz-form-item>
+                  <nz-form-control>
+                    <nz-input-group [nzPrefix]="prefixUser">
+                      <input formControlName="userPassword" nz-input placeholder="Your name">
+                    </nz-input-group>
+                  </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                  <nz-form-control>
+                    <nz-input-group [nzPrefix]="prefixMail">
+                      <input formControlName="userPassword" nz-input placeholder="Your email">
+                    </nz-input-group>
+                  </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                  <nz-form-control>
+                    <nz-input-group>
+                      <textarea rows="3" nz-input placeholder="Your message"></textarea>
+                    </nz-input-group>
+                  </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                  <button nz-button nzType="primary" class="width-200 mr-4">
+                    <i class="fa fa-send mr-2"></i>
+                    Send
+                  </button>
+                  <nz-upload
+                    nzAction="https://jsonplaceholder.typicode.com/posts/">
+                    <button nz-button>
+                      <i nz-icon type="upload"></i><span>Attach File</span>
+                    </button>
+                  </nz-upload>
+                </nz-form-item>
+                <ng-template #prefixUser><i nz-icon type="user"></i></ng-template>
+                <ng-template #prefixMail><i nz-icon type="mail"></i></ng-template>
+              </form>
+            </div>
+          </div>
+          <div class="mb-4">
+            <div class="commentsTitle">Comments</div>
+            <div class="mt-3">
+              <div *ngIf="comments.length > 0">
+                <div *ngFor="let postComment of comments" class="clearfix commentItem" [ngClass]="[postComment.subComments ? 'pb-0' : '']">
+                  <div class="commentAvatar">
+                    <cui-avatar [src]="postComment.avatar" [size]="50" [bordered]="false"></cui-avatar>
+                  </div>
+                  <div class="commentContent">
+                    <div class="clearfix">
+                      <div class="pull-left">
+                        <strong>{{postComment.name}}</strong> posted:
+                        <br/>
+                        <small class="text-muted">{{postComment.date}}</small>
+                      </div>
+                      <div class="pull-right">
+                        <nz-dropdown>
+                          <a nz-dropdown>
+                            Actions <i nz-icon type="down"></i>
+                          </a>
+                          <ul nz-menu nzSelectable>
+                            <li nz-menu-item>
+                              <a><i nz-icon [type]="'edit'"></i> Edit Comment</a>
+                            </li>
+                            <li nz-menu-item>
+                              <a><i nz-icon [type]="'delete'"></i> Delete Comment</a>
+                            </li>
+                            <li nz-menu-item>
+                              <a><i nz-icon [type]="'exclamation-circle'"></i> Mark as a Spam</a>
+                            </li>
+                          </ul>
+                        </nz-dropdown>
+                      </div>
+                    </div>
+                    <div [innerHTML]="postComment.content"></div>
+                    <div>
+                      <a href="javascript: void(0);" class="mr-3">
+                        <i class="icmn-heart mr-2"></i>
+                        <span>{{postComment.likesCount}} Likes</span>
+                      </a>
+                      <a href="javascript: void(0);" class="mr-3">
+                        <i class="icmn-bubble mr-2"></i>
+                        <span>{{postComment.commentsCount}} Comments</span>
+                      </a>
+                      <a href="javascript: void(0);">
+                        <i class="icmn-reply mr-2"></i>
+                        <span>Reply</span>
+                      </a>
+                    </div>
+                    <div *ngIf="postComment.subComments" class="subcommentsContent">
+                      <div *ngFor="let subComment of postComment.subComments" class="commentItem clearfix">
+                        <div class="commentAvatar">
+                          <cui-avatar [size]="50" [src]="subComment.avatar" [bordered]="false"></cui-avatar>
+                        </div>
+                        <div class="commentContent">
+                          <div class="clearfix">
+                            <div class="pull-left">
+                              <strong>{{subComment.name}}</strong> posted:
+                              <br/>
+                              <small class="text-muted">
+                                {{subComment.date}}
+                              </small>
+                            </div>
+                            <div class="pull-right">
+                              <nz-dropdown>
+                                <a nz-dropdown>
+                                  Actions <i nz-icon type="down"></i>
+                                </a>
+                                <ul nz-menu nzSelectable>
+                                  <li nz-menu-item>
+                                    <a><i nz-icon [type]="'edit'"></i> Edit Comment</a>
+                                  </li>
+                                  <li nz-menu-item>
+                                    <a><i nz-icon [type]="'delete'"></i> Delete Comment</a>
+                                  </li>
+                                  <li nz-menu-item>
+                                    <a><i nz-icon [type]="'exclamation-circle'"></i> Mark as a Spam</a>
+                                  </li>
+                                </ul>
+                              </nz-dropdown>
+                            </div>
+                          </div>
+                          <div [innerHtml]="subComment.content"></div>
+                          <div>
+                            <a href="javascript: void(0);" class="mr-3">
+                              <i class="icmn-heart mr-2"></i>
+                              <span>{{subComment.likesCount}} Likes</span>
+                            </a>
+                            <a href="javascript: void(0);" class="mr-3">
+                              <i class="icmn-bubble mr-2"></i>
+                              <span>{{subComment.commentsCount}}</span>
+                            </a>
+                            <a href="javascript: void(0);">
+                              <i class="icmn-reply mr-2"></i>
+                              <span>Reply</span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-5 pb-2">
+                <a href="javascript: void(0);" class="btn btn-default btn-block mb-5">
+                  Load More
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <aside class="sidebar">
+            <div class="partition">
+              <div class="partitionHead">
+                <span class="partitionName">Search</span>
+              </div>
+              <div class="input-group">
+                <nz-input-group [nzSuffix]="suffixIconSearch">
+                  <input type="text" nz-input placeholder="input search text">
+                </nz-input-group>
+                <ng-template #suffixIconSearch>
+                  <i nz-icon type="search"></i>
+                </ng-template>
+              </div>
+            </div>
+            <div class="partition">
+              <div class="partitionHead">
+                <span class="partitionName">Categories</span>
+              </div>
+              <ul class="categoriesList">
+                <li class="categoriesItem" *ngFor="let category of articlesCategories">
+                  <a class="categoriesLink" href="javascript: void(0);">
+                    {{category}}
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="partition">
+              <div class="partitionHead">
+                <span class="partitionName">Latest post</span>
+              </div>
+              <article class="latestPost" *ngFor="let latestArticle of latesArticlesData">
+                <div class="latestImg">
+                  <a href="javascript: void(0);">
+                    <img [src]="latestArticle.cover" alt={{latestArticle.name}}/>
+                  </a>
+                </div>
+                <div class="latestData">
+                  <div class="latestName">
+                    <h2>
+                      <a href="javascript: void(0);">{{latestArticle.name}}</a>
+                    </h2>
+                  </div>
+                  <ul class="latestArticleMeta meta">
+                    <li class="metaInf">
+                      <span class="articleAuthor">
+                        Post By <a href="javascript: void(0);">{{latestArticle.author}}</a>
+                      </span>
+                    </li>
+                    <li class="metaInf">
+                      <span class="articleDate">
+                        On {{latestArticle.date}}
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </article>
+            </div>
+            <div class="partition">
+              <div class="partitionHead">
+                <span class="partitionName">Subscribe</span>
+              </div>
+              <div class="input-group">
+                <nz-input-group [nzAddOnAfter]="addOnAfterIconTemplate">
+                  <input type="text" nz-input placeholder="Email">
+                </nz-input-group>
+                <ng-template #addOnAfterIconTemplate>
+                  <i nz-icon type="mail"></i>
+                </ng-template>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

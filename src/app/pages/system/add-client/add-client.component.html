@@ -1,0 +1,97 @@
+<div class="utils__title utils__title--flat mb-3">
+  <strong class="text-uppercase font-size-16">Debe guardar los datos del administrador antes de guardar los datos de la
+    iglesia</strong>
+</div>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-header">
+        <div class="utils__title">
+          <strong>Datos del Administrador</strong>
+        </div>
+        <div class="utils__titleDescription">
+          Ingrese los datos y revise bien antes de guardar.
+        </div>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="registerAdminForm" (ngSubmit)="onSubmitAdmin()">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail">Email</label>
+              <input type="email" id="inputEmail" formControlName="email" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors">El email es requierido</div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPhone">Teléfono</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupPrepend">+56</span>
+                </div>
+                <input type="text" formControlName="phone" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" id="inputPhone" placeholder="99999999">
+                <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                  <div *ngIf="f.phone.errors">El teléfono es requierido</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputNombre">Nombre</label>
+              <input type="text" formControlName="name" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.name.errors }" id="inputNombre" placeholder="Nombre">
+              <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors">El nombre es requierido</div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputApellido">Apellido</label>
+              <input type="text" formControlName="last_name" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }" id="inputNombre" id="inputApellido"
+                placeholder="Apellido">
+              <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+                <div *ngIf="f.last_name.errors">El apellido es requierido</div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Registrar Administrador</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-header">
+        <div class="utils__title">
+          <strong>Datos de la Iglesia</strong>
+        </div>
+        <div class="utils__titleDescription">
+          Ingrese los datos y revise bien antes de guardar.
+        </div>
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <label for="inputIglesia">Nombre Iglesia</label>
+            <input type="text" class="form-control" id="inputIglesia" placeholder="Santo Cristo">
+          </div>
+          <div class="form-group">
+            <label for="inputAddress">Dirección sede central</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+          </div>
+          <div class="utils__title">
+            <strong>Ingrese a la consola de Firebase y cree la BD, luego registre el nombre aquí.</strong>
+          </div>
+          <div class="form-group">
+            <label for="inputDB">Nombre BD</label>
+            <input type="text" class="form-control" id="inputDB" placeholder="Realtime Database">
+          </div>
+          <button type="submit" class="btn btn-primary">Guardar datos iglesia</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

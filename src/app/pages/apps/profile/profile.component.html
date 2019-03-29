@@ -1,0 +1,294 @@
+<div class="cui-profile">
+  <div class="row">
+    <div class="col-xl-4">
+      <div class="card cui-profile-header" [ngStyle]="{'background-image': 'url(' + background + ')'}">
+        <div class="card-body text-center">
+          <cui-avatar [src]="photo" [size]="110" [bordered]="true" borderColor="#fff"></cui-avatar>
+          <br>
+          <br>
+          <!-- <nz-button-group>
+            <button nz-button style="width: 150px;">Follow</button>
+            <button nz-button style="width: 150px;">Add to Friend</button>
+          </nz-button-group> -->
+          <br>
+          <p class="text-white mt-2">Last activity {{lastActivity}}</p>
+          <p class="text-white mt-2">
+            <cui-donut type="danger" [name]="status"></cui-donut>
+          </p>
+        </div>
+      </div>
+      <!-- <div class="card">
+        <div class="card-body">
+          <h5 class="mb-3 text-black">
+            <strong>Actions</strong>
+          </h5>
+          <div class="cui-profile-actions">
+            <button nz-button style="width: 100%; display: block">Send Message</button>
+            <button nz-button style="width: 100%; display: block">Send File</button>
+            <button nz-button style="width: 100%; display: block">Access History</button>
+            <button nz-button style="width: 100%; display: block">Rename User</button>
+            <button nz-button style="width: 100%; display: block">Ban User</button>
+          </div>
+        </div>
+      </div> -->
+      <!-- <div class="card">
+        <div class="card-body">
+          <h5 class="mb-3 text-black">
+            <strong>Skills</strong>
+          </h5>
+          <div *ngFor="let skill of skills">
+            <div class="mb-1">{{skill.name}}</div>
+            <nz-progress [nzPercent]="skill.value" [nzShowInfo]="false"></nz-progress>
+          </div>
+        </div>
+      </div> -->
+      <div class="card">
+        <div class="card-body">
+          <h5 class="mb-3 text-black">
+            <strong>Information</strong>
+          </h5>
+          <dl class="row">
+            <dt class="col-xl-3">Courses End:</dt>
+            <dd class="col-xl-9">{{coursesEnd}}</dd>
+            <dt class="col-xl-3">Address:</dt>
+            <dd class="col-xl-9">{{adress}}</dd>
+            <dt class="col-xl-3">Skills:</dt>
+            <dd class="col-xl-9">
+              <span class="badge badge-default mr-1" *ngFor="let skill of profSkills">
+                {{skill}}
+              </span>
+            </dd>
+            <dt class="col-xl-3">Last companies:</dt>
+            <dd class="col-xl-9">{{lastCompanies}}</dd>
+            <dt class="col-xl-3">Personal Information:</dt>
+            <dd class="col-xl-9">{{personal}}</dd>
+          </dl>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="mb-3 text-black">
+            <strong>Calendar</strong>
+          </h5>
+          <nz-calendar nzCard></nz-calendar>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-8">
+      <div class="card card-body mb4">
+        <div>
+          <h2>
+            <span class="text-black mr-2">
+              <strong>{{name}}</strong>
+            </span>
+            <small class="text-muted">{{nickname}}</small>
+          </h2>
+          <p class="mb-1">{{post}}</p>
+        </div>
+        <div class="cui-profile-social-counts">
+          <div class="text-center mr-3">
+            <h2>{{followersCount}}</h2>
+            <p class="mb-0">Followers</p>
+          </div>
+          <div class="text-center">
+            <h2>{{postsCount}}</h2>
+            <p class="mb-0">Posts</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <nz-tabset>
+            <nz-tab [nzTitle]="wallTabTemplate">
+              <ng-template #wallTabTemplate>
+                <i class="icmn-menu mr-1"></i> Wall
+              </ng-template>
+              <div class="py-3">
+                <textarea rows="3" nz-input></textarea>
+                <div class="mt-3">
+                  <button nz-button nzType="primary" style="width: 200px;" class="mr-2">
+                    <i class="fa fa-send mr-2"></i> Create Post
+                  </button>
+                  <nz-upload
+                    nzAction="https://jsonplaceholder.typicode.com/posts/">
+                    <button nz-button>
+                      <i nz-icon type="upload"></i><span>Attach File</span>
+                    </button>
+                  </nz-upload>
+                </div>
+              </div>
+              <hr>
+              <div *ngFor="let item of posts">
+                <div class="cui-profile-wall-item clearfix">
+                  <div class="cui-profile-wall-avatar">
+                    <cui-avatar [src]="item.avatar" [bordered]="false" [size]="50"></cui-avatar>
+                  </div>
+                  <div class="cui-profile-wall-content">
+                    <div class="mb-3">
+                      <div class="pull-right">
+                        <nz-dropdown>
+                          <a nz-dropdown>
+                            Actions <i nz-icon type="down"></i>
+                          </a>
+                          <ul nz-menu nzSelectable>
+                            <li nz-menu-item>
+                              <i nz-icon [type]="'edit'"></i> Edit Post
+                            </li>
+                            <li nz-menu-item>
+                              <i nz-icon [type]="'delete'"></i> Delete Post
+                            </li>
+                            <li nz-menu-item>
+                              <i nz-icon [type]="'frown-o'"></i> Mark as a Spam
+                            </li>
+                          </ul>
+                        </nz-dropdown>
+                      </div>
+                      <strong>{{item.name}}</strong> posted:
+                      <br>
+                      <small class="text-muted">{{item.date}}</small>
+                    </div>
+                    <div [innerHtml]="item.content" class="mb-3"></div>
+                    <div class="mr-3">
+                      <a href="javascript: void(0);" class="mr-3">
+                        <i class="icmn-heart mr-2"></i> <span>{{item.likesCount}} Likes</span>
+                      </a>
+                      <a href="javascript: void(0);">
+                        <i class="icmn-bubble mr-2"></i> <span>{{item.commentsCount}} Comments</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="cui-profile-wall-content cui-profile-wall-inner-content">
+                  <div *ngIf="item.comments.length > 0" class="cui-profile-wall-comments">
+                    <div class="cui-profile-wall-item clearfix" *ngFor="let postComment of item.comments">
+                      <div class="cui-profile-wall-avatar">
+                        <cui-avatar [size]="50" [src]="postComment.avatar" [bordered]="false"></cui-avatar>
+                      </div>
+                      <div class="cui-profile-wall-content">
+                        <div class="mb-3">
+                          <div class="pull-right">
+                            <nz-dropdown>
+                              <a nz-dropdown>
+                                Actions <i nz-icon type="down"></i>
+                              </a>
+                              <ul nz-menu nzSelectable>
+                                <li nz-menu-item>
+                                  <i nz-icon [type]="'edit'"></i> Edit Post
+                                </li>
+                                <li nz-menu-item>
+                                  <i nz-icon [type]="'delete'"></i> Delete Post
+                                </li>
+                                <li nz-menu-item>
+                                  <i nz-icon [type]="'frown-o'"></i> Mark as a Spam
+                                </li>
+                              </ul>
+                            </nz-dropdown>
+                          </div>
+                          <strong>{{postComment.name}}</strong> posted:
+                          <br>
+                          <small class="text-muted">{{postComment.date}}</small>
+                        </div>
+                        <div [innerHtml]="postComment.content"></div>
+                        <div>
+                          <a href="javascript: void(0);" class="mr-3">
+                            <i class="icmn-heart mr-2"></i> <span>{{item.likesCount}} Likes</span>
+                          </a>
+                          <a href="javascript: void(0);">
+                            <i class="icmn-bubble mr-2"></i> <span>{{item.commentsCount}} Comments</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </nz-tab>
+            <nz-tab [nzTitle]="chatTabTemplate">
+              <ng-template #chatTabTemplate>
+                <i class="icmn-bubbles mr-1"></i> Messages
+              </ng-template>
+              <cui-chat></cui-chat>
+            </nz-tab>
+            <nz-tab [nzTitle]="settingsTabTemplate">
+              <ng-template #settingsTabTemplate>
+                <i class="icmn-cog mr-1"></i> Settings
+              </ng-template>
+              <form nz-form [nzLayout]="formLayout">
+                <h5 class="text-black mt-4">
+                  <strong>Personal Information</strong>
+                </h5>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <nz-form-item>
+                      <nz-form-label nzFor="userName">Username:</nz-form-label>
+                      <nz-form-control>
+                        <input nz-input placeholder="Username" id="userName">
+                      </nz-form-control>
+                    </nz-form-item >
+                  </div>
+                  <div class="col-lg-6">
+                    <nz-form-item>
+                      <nz-form-label nzFor="email">Email:</nz-form-label>
+                      <nz-form-control>
+                        <input nz-input placeholder="Email" id="email">
+                      </nz-form-control>
+                    </nz-form-item >
+                  </div>
+                </div>
+                <h5 class="text-black mt-4">
+                  <strong>New Password</strong>
+                </h5>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <nz-form-item>
+                      <nz-form-label nzFor="password">Password:</nz-form-label>
+                      <nz-form-control>
+                        <input nz-input placeholder="Password" id="password">
+                      </nz-form-control>
+                    </nz-form-item>
+                  </div>
+                  <div class="col-lg-6">
+                    <nz-form-item>
+                      <nz-form-label nzFor="confPassword">Confirm Password:</nz-form-label>
+                      <nz-form-control>
+                        <input nz-input placeholder="Confirm password" id="confPassword">
+                      </nz-form-control>
+                    </nz-form-item>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <h5 class="text-black mt-4 mb-3">
+                      <strong>Profile Avatar</strong>
+                    </h5>
+                    <nz-upload
+                      nzAction="https://jsonplaceholder.typicode.com/posts/">
+                      <button nz-button>
+                        <i nz-icon type="upload"></i><span>Click to Upload</span>
+                      </button>
+                    </nz-upload>
+                  </div>
+                  <div class="col-lg-6">
+                    <h5 class="text-black mt-4 mb-3">
+                      <strong>Profile Background</strong>
+                    </h5>
+                    <nz-upload
+                      nzAction="https://jsonplaceholder.typicode.com/posts/">
+                      <button nz-button>
+                        <i nz-icon type="upload"></i><span>Click to Upload</span>
+                      </button>
+                    </nz-upload>
+                  </div>
+                </div>
+                <div class="form-actions">
+                  <button nz-button style="width: 150px;" [nzType]="'primary'" class="mr-3">Submit</button>
+                  <button nz-button>Cancel</button>
+                </div>
+              </form>
+            </nz-tab>
+          </nz-tabset>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

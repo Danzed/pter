@@ -1,0 +1,344 @@
+<section class="card">
+  <div class="card-header">
+    <div class="utils__title">
+      <strong>Chartist.js</strong>
+      <a
+        href="https://github.com/willsoto/ng-chartist"
+        target="_blank"
+        class="btn btn-sm btn-primary ml-4"
+      >
+        Official Documentation <i class="icmn-link ml-1"></i>
+      </a>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-lg-6">
+        <h5 class="text-black">
+          <strong>CSS Styling & Animations</strong>
+        </h5>
+        <p class="text-muted">
+          Element: read
+          <a
+            href="https://github.com/willsoto/ng-chartist"
+            target="_blank"
+          >
+            official documentation
+            <small>
+              <i class="icmn-link ml-1"></i>
+            </small>
+          </a>
+        </p>
+        <div class="mb-5">
+          <x-chartist
+            [data]="animationData"
+            [type]="'Line'"
+            [options]="animationOptions"
+            class="height-300 chart-css-animations chartist-theme-dark chartist-animated chartist"
+          >
+          </x-chartist>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <h5 class="text-black">
+          <strong>SMIL Animations</strong>
+        </h5>
+        <p class="text-muted">
+          Element: read
+          <a
+            href="https://github.com/willsoto/ng-chartist"
+            target="_blank"
+          >
+            official documentation
+            <small>
+              <i class="icmn-link ml-1"></i>
+            </small>
+          </a>
+        </p>
+        <div class="mb-5">
+          <x-chartist
+            [type]="'Line'"
+            [data]="smilData"
+            [options]="smilOptions"
+            [events]="smilEvents"
+            class="height-300 chart-smil-animations"
+          >
+          </x-chartist>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <h5 class="text-black">
+          <strong>Line</strong>
+        </h5>
+        <p class="text-muted">
+          Element: read
+          <a
+            href="https://github.com/willsoto/ng-chartist"
+            target="_blank"
+          >
+            official documentation
+            <small>
+              <i class="icmn-link ml-1"></i>
+            </small>
+          </a>
+        </p>
+        <div class="mb-5">
+          <x-chartist
+            [data]="lineData"
+            [type]="'Line'"
+            [options]="lineOptions"
+            class="height-300"
+          >
+          </x-chartist>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <h5 class="text-black">
+          <strong>Area</strong>
+        </h5>
+        <p class="text-muted">
+          Element: read
+          <a
+            href="https://github.com/willsoto/ng-chartist"
+            target="_blank"
+          >
+            official documentation
+            <small>
+              <i class="icmn-link ml-1"></i>
+            </small>
+          </a>
+        </p>
+        <div class="mb-5">
+          <x-chartist
+            [data]="areaData"
+            [type]="'Line'"
+            [options]="areaOptions"
+            class="height-300"
+          >
+          </x-chartist>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <h5 class="text-black">
+          <strong>Scatter</strong>
+        </h5>
+        <p class="text-muted">
+          Element: read
+          <a
+            href="https://github.com/willsoto/ng-chartist"
+            target="_blank"
+          >
+            official documentation
+            <small>
+              <i class="icmn-link ml-1"></i>
+            </small>
+          </a>
+        </p>
+        <div class="mb-5">
+          <x-chartist
+            [type]="'Line'"
+            [data]="scatterData"
+            [options]="scatterOptions"
+            [responsiveOptions]="scatterResponsiveOptions"
+            class="height-300"
+          >
+          </x-chartist>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <h5 class="text-black">
+          <strong>Horizontal Bar</strong>
+        </h5>
+        <p class="text-muted">
+          Element: read
+          <a
+            href="https://github.com/willsoto/ng-chartist"
+            target="_blank"
+          >
+            official documentation
+            <small>
+              <i class="icmn-link ml-1"></i>
+            </small>
+          </a>
+        </p>
+        <div class="mb-5">
+          <x-chartist
+            [type]="'Bar'"
+            [data]="horizontalData"
+            [options]="horizontalOptions"
+            class="height-300"
+          >
+          </x-chartist>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <h5 class="text-black">
+          <strong>Bi-polar Line</strong>
+        </h5>
+        <p class="text-muted">
+          Element: read
+          <a
+            href="https://github.com/willsoto/ng-chartist"
+            target="_blank"
+          >
+            official documentation
+            <small>
+              <i class="icmn-link ml-1"></i>
+            </small>
+          </a>
+        </p>
+        <div class="mb-5">
+          <x-chartist
+            [type]="'Line'"
+            [data]="biPolarLineData"
+            [options]="biPolarLineOptions"
+            class="height-300"
+          >
+          </x-chartist>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <h5 class="text-black">
+          <strong>Bi-polar Bar</strong>
+        </h5>
+        <p class="text-muted">
+          Element: read
+          <a
+            href="https://github.com/willsoto/ng-chartist"
+            target="_blank"
+          >
+            official documentation
+            <small>
+              <i class="icmn-link ml-1"></i>
+            </small>
+          </a>
+        </p>
+        <div class="mb-5">
+          <x-chartist
+            [type]="'Bar'"
+            [data]="biPolarBarData"
+            [options]="biPolarBarOptions"
+            class="height-300"
+          >
+          </x-chartist>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <h5 class="text-black">
+          <strong>Stacked Bar</strong>
+        </h5>
+        <p class="text-muted">
+          Element: read
+          <a
+            href="https://github.com/willsoto/ng-chartist"
+            target="_blank"
+          >
+            official documentation
+            <small>
+              <i class="icmn-link ml-1"></i>
+            </small>
+          </a>
+        </p>
+        <div class="mb-5">
+          <x-chartist
+            [type]="'Bar'"
+            [data]="stackedBarData"
+            [options]="stackedBarOptions"
+            class="height-300"
+          >
+          </x-chartist>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <h5 class="text-black">
+          <strong>Overlapping Bar</strong>
+        </h5>
+        <p class="text-muted">
+          Element: read
+          <a
+            href="https://github.com/willsoto/ng-chartist"
+            target="_blank"
+          >
+            official documentation
+            <small>
+              <i class="icmn-link ml-1"></i>
+            </small>
+          </a>
+        </p>
+        <div class="mb-5">
+          <x-chartist
+            [type]="'Bar'"
+            [data]="overlappingBarData"
+            [options]="overlappingBarOptions"
+            [responsiveOptions]="overlappingResponsiveOptions"
+            class="height-300"
+          >
+          </x-chartist>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <h5 class="text-black">
+          <strong>Simple Pie</strong>
+        </h5>
+        <p class="text-muted">
+          Element: read
+          <a
+            href="https://github.com/willsoto/ng-chartist"
+            target="_blank"
+          >
+            official documentation
+            <small>
+              <i class="icmn-link ml-1"></i>
+            </small>
+          </a>
+        </p>
+        <div class="mb-5">
+          <x-chartist
+            [type]="'Pie'"
+            [data]="simplePieData"
+            [options]="simplePieOptions"
+            class="height-300"
+          >
+          </x-chartist>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <h5 class="text-black">
+          <strong>Pie w/ Labels</strong>
+        </h5>
+        <p class="text-muted">
+          Element: read
+          <a
+            href="https://github.com/willsoto/ng-chartist"
+            target="_blank"
+          >
+            official documentation
+            <small>
+              <i class="icmn-link ml-1"></i>
+            </small>
+          </a>
+        </p>
+        <div class="mb-5">
+          <x-chartist
+            [type]="'Pie'"
+            [data]="labelsPieData"
+            [options]="labelsPieOptions"
+            [responsiveOptions]="labelsPieResponsiveOptions"
+            class="height-300"
+          >
+          </x-chartist>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

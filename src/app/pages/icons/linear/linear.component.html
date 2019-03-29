@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="card-header">
+    <div class="utils__title">
+      <strong>Linear Icons Free</strong>
+      <a
+        href="https://linearicons.com/free"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-sm btn-primary ml-4"
+      >
+        Official Documentation <i class="icmn-link ml-1"></i>
+      </a>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-xl-6 offset-xl-3">
+        <ul class="utils__iconsBlock list-unstyled">
+          <li *ngFor="let icon of iconsData" nz-tooltip [nzTitle]="'lnr ' + icon">
+            <i [class]="'lnr ' + icon"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

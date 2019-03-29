@@ -1,0 +1,61 @@
+<div class="card">
+  <div class="card-header mb-2">
+    <div class="utils__title">
+      <strong>Post Add/Edit</strong>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="addPost">
+      <form nz-form [nzLayout]="'verical'">
+        <nz-form-item>
+          <nz-form-label>Title</nz-form-label>
+          <nz-form-control>
+            <input nz-input placeholder="Post title">
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label>Type</nz-form-label>
+          <nz-form-control>
+            <nz-radio-group>
+              <label nz-radio nzValue="Text">Text</label>
+              <label nz-radio nzValue="Video">Video</label>
+              <label nz-radio nzValue="Image">Image</label>
+              <label nz-radio nzValue="Audio">Audio</label>
+              <label nz-radio nzValue="Vimeo">Vimeo</label>
+            </nz-radio-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label>Category</nz-form-label>
+          <nz-form-control>
+            <nz-select style="width: 100%" nzMode="tags" nzPlaceHolder="Please select post categories">
+              <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label>Content</nz-form-label>
+          <div>
+            <quill-editor [style]="{height: '200px'}"></quill-editor>
+          </div>
+        </nz-form-item>
+        <nz-upload
+          nzType="drag"
+          [nzMultiple]="true"
+          [nzLimit]="2"
+          nzAction="https://jsonplaceholder.typicode.com/posts/">
+          <p class="ant-upload-drag-icon">
+            <i nz-icon type="inbox"></i>
+          </p>
+          <p class="ant-upload-text">Click or drag file to this area to upload</p>
+        </nz-upload>
+        <nz-form-item>
+          <div class="submit mt-3">
+            <button nz-button [nzType]="'primary'" class="mr-3">Save and Post</button>
+            <button nz-button [nzType]="'danger'">Discard</button>
+          </div>
+        </nz-form-item>
+      </form>
+    </div>
+  </div>
+</div>

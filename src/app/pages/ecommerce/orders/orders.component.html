@@ -1,0 +1,65 @@
+<div class="card">
+  <div class="card-header">
+    <div class="utils__title">
+      <strong>
+        Orders
+      </strong>
+    </div>
+  </div>
+  <div class="card-body">
+    <nz-table #orderTable [nzData]="displayProductsData">
+      <thead (nzSortChange)="sort($event)" nzSingleSort>
+      <tr>
+        <th nzShowSort nzSortKey="id">ID</th>
+        <th nzShowSort nzSortKey="date">Purchase Date</th>
+        <th nzShowSort nzSortKey="customer">Customer</th>
+        <th nzShowSort nzSortKey="total">Grand Total</th>
+        <th nzShowSort nzSortKey="tax">Tax</th>
+        <th nzShowSort nzSortKey="shipping">Shipping</th>
+        <th nzShowSort nzSortKey="quantity">Quantity</th>
+        <th nzShowSort nzSortKey="status">Status</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of displayProductsData">
+        <td>
+          <a href="javascript: void(0);" class="utils__link--underlined">
+            #{{item.id}}
+          </a>
+        </td>
+        <td>
+          {{item.date}}
+        </td>
+        <td>
+          <a href="javascript: void(0);" class="utils__link--underlined">
+            {{item.customer}}
+          </a>
+        </td>
+        <td>
+          ${{item.total}}
+        </td>
+        <td>
+          ${{item.tax}}
+        </td>
+        <td>
+          {{item.shipping}}
+        </td>
+        <td>
+          {{item.quantity}}
+        </td>
+        <td>
+          <span [ngClass]="[item.status === 'Processing' ? 'badge badge-primary font-size-12' : 'badge badge-default font-size-12']">
+            {{item.status}}
+          </span>
+        </td>
+        <td>
+          <button nz-button class="mr-1" nzSize="small"><i nz-icon type="edit" theme="outline"></i> View</button>
+          <button nz-button class="mr-1" nzSize="small"><i nz-icon type="delete" theme="outline"></i> Remove</button>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
+

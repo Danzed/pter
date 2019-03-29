@@ -1,0 +1,78 @@
+@import 'src/assets/styles/mixins.scss';
+
+.cui-github-explore-container {
+  max-width: rem(1000);
+  margin: 0 auto;
+}
+
+.cui-github-explore-descr {
+  margin-bottom: rem(14);
+}
+
+.cui-github-explore-descr-text {
+  display: inline-block;
+  margin-bottom: 0;
+  margin-top: 6px;
+}
+
+.cui-github-explore-overall-data {
+  border: 1px solid $gray-border;
+  border-radius: 4px;
+  padding: rem(7);
+  margin-bottom: rem(12);
+}
+
+.cui-github-explore-overall-data-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: table;
+  width: 100%;
+}
+
+.cui-github-explore-overall-data-item {
+  display: table-cell;
+  text-align: center;
+  font-weight: bold;
+}
+
+.cui-github-explore-sort-left {
+  float: left;
+  margin-bottom: rem(12);
+
+  @media (max-width: $md-max-width) {
+    float: none;
+  }
+}
+
+.cui-github-explore-sort-right {
+  float: right;
+  margin-bottom: rem(12);
+
+  @media (max-width: $md-max-width) {
+    float: none;
+  }
+}
+
+.cui-github-explore-sort-option {
+  display: inline-block;
+  vertical-align: top;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.cui-github-explore-nav {
+  border-top: 1px solid rgba($black, 0.1);
+  border-bottom: 1px solid rgba($black, 0.1);
+}
+
+.cui-github-explore-nav-icon {
+  width: 17px;
+  padding-right: 0 !important;
+}
+
+.cui-github-explore-nav-time {
+  text-align: right;
+}

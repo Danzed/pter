@@ -1,0 +1,46 @@
+<section
+  class="login"
+  [ngClass]="fullScreen ? 'fullscreen' : 'windowed'"
+  [ngStyle]="{'background-image': 'url(\'assets/images/photos/' + backgroundNumber + '.jpeg\')'}"
+>
+  <header class="header">
+    <a href="javascript: void(0);" class="logo">
+      <img src="assets/images/logo-inverse.png" alt="Clean UI Admin Template">
+    </a>
+    <div class="styleControls">
+      <button nz-button nzType="default" (click)="changeScreen()">Set {{fullScreen ? 'windowed' : 'fullscreen'}}</button>
+      <button nz-button nzType="default" class="ml-3" (click)="changeBackground()">Change Background</button>
+    </div>
+  </header>
+  <div class="content">
+    <div class="form">
+      <div class="user">
+        <cui-avatar src="assets/images/avatars/1.jpg" [bordered]="true" [size]="90"></cui-avatar>
+        <p>
+          <i class="icmn-lock"></i>
+          <strong>Artour Arteezy</strong>
+        </p>
+      </div>
+      <form nz-form class="login-form">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-input-group [nzPrefix]="prefixLock">
+              <input formControlName="userPassword" nz-input placeholder="Password">
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <div class="form-actions text-center">
+          <button type="submit" class="btn btn-success"w>
+            Unlock
+          </button>
+        </div>
+        <div class="text-center">
+          <a href="javascript: void(0);" class="text-default">
+            Or sign in as a different user
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<ng-template #prefixLock><i nz-icon type="lock"></i></ng-template>

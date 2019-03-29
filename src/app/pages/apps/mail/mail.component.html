@@ -1,0 +1,92 @@
+<div class="card cui-mail">
+  <div class="cui-mail-sidebar">
+    <div class="cui-mail-sidebar-header">
+      <nz-input-group [nzSuffix]="suffixIconSearch" style="width: 100%">
+        <input type="text" nz-input placeholder="Search mail ...">
+      </nz-input-group>
+      <ng-template #suffixIconSearch>
+        <i nz-icon type="search"></i>
+      </ng-template>
+    </div>
+    <div class="cui-mail-tabs">
+      <nz-tabset nzTabPosition="left" [nzSelectedIndex]="activeCategoryIndex">
+        <nz-tab [nzTitle]="categoryTabTemplate" *ngFor="let category of mailCategories">
+          <ng-template #categoryTabTemplate>
+            <div class="cui-mail-tab" (click)="changeMailData(category.key)">
+              <div class="cui-mail-tab-content">
+                <div class="mb-1">
+                  <strong>
+                    {{category.title}} <span *ngIf="category.mailCount > 0">({{category.mailCount}})</span>
+                  </strong>
+                  <div *ngIf="category.mailCount > 0">
+                    <small class="cui-mail-tab-time">8:34PM</small>
+                    <div class="cui-mail-tab-name">Barak Obama</div>
+                    <div class="cui-mail-tab-text">
+                      Hello! Where you are now? I want to talk. Hello! Where you are now? I want to talk
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </nz-tab>
+      </nz-tabset>
+    </div>
+  </div>
+  <div class="cui-mail-content">
+    <div class="cui-mail-content-header">
+      <div class="clearfix">
+        <div class="pull-right mr-3">
+          <button nz-button nzType="primary">Compose mail</button>
+        </div>
+        <nz-tabset>
+          <nz-tab [nzTitle]="primaryTabTemplate">
+            <ng-template #primaryTabTemplate>
+              <i nz-icon type="home" theme="outline"></i>Primary
+            </ng-template>
+          </nz-tab>
+          <nz-tab [nzTitle]="socialTabTemplate">
+            <ng-template #socialTabTemplate>
+              <i nz-icon type="message" theme="outline"></i>Social
+            </ng-template>
+          </nz-tab>
+          <nz-tab [nzTitle]="promotionTabTemplate">
+            <ng-template #promotionTabTemplate>
+              <i nz-icon type="tags" theme="outline"></i>Promotion
+            </ng-template>
+          </nz-tab>
+        </nz-tabset>
+      </div>
+    </div>
+    <nz-table #mailTable [nzData]="mail" class="utils__scrollTable">
+      <thead>
+        <tr>
+          <th></th>
+          <th>From</th>
+          <th>Message</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of mail">
+          <td>
+            <i [ngClass]="[data.favorites ? 'icmn-star-full text-warning' : 'icmn-star-full text-default']"></i>
+          </td>
+          <td>
+            <a href="javascript: void(0);">{{data.from}}</a>
+          </td>
+          <td>
+            {{data.message}}
+          </td>
+          <td>
+            <i *ngIf="data.attachments" class="icmn-attachment text-default"></i>
+          </td>
+          <td>
+            {{data.time}}
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
