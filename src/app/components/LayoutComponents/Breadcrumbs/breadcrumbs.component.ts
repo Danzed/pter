@@ -4,11 +4,13 @@ import { Store } from '@ngrx/store'
 import { filter } from 'rxjs/operators'
 import { reduce } from 'lodash'
 import { MenuService } from 'src/app/services/menu.service'
+import { UserService } from 'src/app/services/user/user.service'
 
 @Component({
   selector: 'cui-breadcrumbs',
   templateUrl: './breadcrumbs.component.html',
   styleUrls: ['./breadcrumbs.component.scss'],
+  providers: [UserService]
 })
 export class BreadcrumbsComponent implements OnInit {
   menuData: any[]
@@ -18,9 +20,13 @@ export class BreadcrumbsComponent implements OnInit {
     private menuService: MenuService,
     private store: Store<any>,
     private router: Router,
+    private _userService: UserService
   ) { }
 
   ngOnInit() {
+    // this._userService.getMenu().subscribe(res => {
+    //   console.log('BreadcrumbsComponent', res)
+    // })
     this.menuService.getLeftMenuData().subscribe(menuData => (this.menuData = menuData))
     this.generateBreadcrumbs(this.router.url)
     this.router.events

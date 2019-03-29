@@ -9,7 +9,7 @@ import { HttpBase } from '../http.base'
 @Injectable({
   providedIn: 'root'
 })
-export class SystemService extends HttpBase {
+export class UserService extends HttpBase {
 
   constructor(private http: HttpClient,
     public notification: NzNotificationService,
@@ -17,18 +17,11 @@ export class SystemService extends HttpBase {
     super(notification, authService)
   }
 
-  /*========================================
-    CRUD Methods for consuming RESTful API
-  =========================================*/
-
-  public createClient(client): Observable<any> {
-    client.phone = client.phone.indexOf('+56') >= 0 ? client.phone : '+56' + client.phone
-    client.role = 'master'
-    return this.http.post(this.url_api + '/systems/client', client, this.httpOptions)
+  public getMenu(): Observable<any> {
+    return this.http.get(this.url_api + '/users/menu', this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.handleError.bind(this))
       )
   }
-
 }

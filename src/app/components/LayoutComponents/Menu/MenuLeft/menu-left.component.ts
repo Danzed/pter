@@ -6,11 +6,13 @@ import { select, Store } from '@ngrx/store'
 import { MenuService } from 'src/app/services/menu.service'
 import * as SettingsActions from 'src/app/store/settings/actions'
 import * as Reducers from 'src/app/store/reducers'
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'cui-menu-left',
   templateUrl: './menu-left.component.html',
   styleUrls: ['./menu-left.component.scss'],
+  providers: [ UserService ]
 })
 export class MenuLeftComponent implements OnInit {
   @Input() isMenuCollapsed: Boolean = false
@@ -24,9 +26,13 @@ export class MenuLeftComponent implements OnInit {
     private menuService: MenuService,
     private store: Store<any>,
     private router: Router,
+    private _userService: UserService
   ) {}
 
   ngOnInit() {
+    this._userService.getMenu().subscribe(res => {
+      console.log('MenuLeftComponent', res)
+    })
     this.menuService.getLeftMenuData().subscribe(menuData => (this.menuData = menuData))
     this.store.pipe(select(Reducers.getSettings)).subscribe(state => {
       this.isLightTheme = state.isLightTheme
