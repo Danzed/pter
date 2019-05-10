@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
-import { retry, catchError } from 'rxjs/operators'
+import { retry, catchError, map } from 'rxjs/operators'
 import { NzNotificationService } from 'ng-zorro-antd'
 import { AuthService } from '../auth.service'
 import { HttpBase } from '../http.base'

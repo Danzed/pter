@@ -24,10 +24,11 @@ export class BreadcrumbsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this._userService.getMenu().subscribe(res => {
-    //   console.log('BreadcrumbsComponent', res)
-    // })
-    this.menuService.getLeftMenuData().subscribe(menuData => (this.menuData = menuData))
+    this._userService.getMenu().subscribe(res => {
+      console.log('BreadcrumbsComponent', res['menu_data'])
+      this.menuData = res['menu_data']
+    })
+    // this.menuService.getLeftMenuData().subscribe(menuData => (this.menuData = menuData))
     this.generateBreadcrumbs(this.router.url)
     this.router.events
       .pipe(filter(event => event instanceof NavigationStart))

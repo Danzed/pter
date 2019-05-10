@@ -66,6 +66,7 @@
     "ng-chartist": "^4.1.0",
     "ng-zorro-antd": "^7.0.0-rc.3",
     "ng2-nvd3": "^2.0.0",
+    "ng2-rut": "^0.3.2",
     "ngx-perfect-scrollbar": "^7.2.0",
     "ngx-quill": "^4.6.3",
     "ngx-scrollbar": "^4.1.1",

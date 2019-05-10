@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { SystemService } from 'src/app/services/system/system.service'
+import { NzNotificationService } from 'ng-zorro-antd'
+import { RutValidator } from 'ng2-rut'
 
 @Component({
   selector: 'app-add-client',
@@ -18,23 +20,27 @@ export class AddClientComponent implements OnInit {
     email: String,
     phone: String,
     name: String,
-    last_name: String
-  }
-  church: {
-    name: String,
+    last_name: String,
+    nameChurch: String,
     address: String,
     bd: String
   }
 
   constructor(private formBuilder: FormBuilder,
-    private systemService: SystemService) { }
+    private systemService: SystemService,
+    public notification: NzNotificationService,
+    public rutValidator: RutValidator) { }
 
   ngOnInit() {
     this.registerAdminForm = this.formBuilder.group({
       name: ['', Validators.required],
+      rut: ['', [Validators.required, this.rutValidator]],
       last_name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.minLength(9)]]
+      phone: ['', [Validators.required, Validators.minLength(9)]],
+      nameChurch: ['', Validators.required],
+      address: ['', Validators.required],
+      bd: ['', Validators.required]
     })
   }
 
@@ -52,10 +58,21 @@ export class AddClientComponent implements OnInit {
     this.admin = this.registerAdminForm.value
 
     this.systemService.createClient(this.admin).subscribe(resp => {
-      console.log(resp)
-    })
+      if (resp.code === 0) {
+        this.notification.success(
+          'Registro Cliente',
+          'El cliente se registro exitosamente.'
+        )
 
-    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.admin))
+        this.registerAdminForm.reset()
+        this.submitted = false
+      } else {
+        this.notification.error(
+          'Registro Cliente',
+          'Error en el registro.'
+        )
+      }
+    })
   }
 
 }

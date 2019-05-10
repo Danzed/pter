@@ -6,13 +6,13 @@ import { select, Store } from '@ngrx/store'
 import { MenuService } from 'src/app/services/menu.service'
 import * as SettingsActions from 'src/app/store/settings/actions'
 import * as Reducers from 'src/app/store/reducers'
-import { UserService } from 'src/app/services/user/user.service';
+import { UserService } from 'src/app/services/user/user.service'
 
 @Component({
   selector: 'cui-menu-left',
   templateUrl: './menu-left.component.html',
   styleUrls: ['./menu-left.component.scss'],
-  providers: [ UserService ]
+  providers: [UserService]
 })
 export class MenuLeftComponent implements OnInit {
   @Input() isMenuCollapsed: Boolean = false
@@ -27,18 +27,19 @@ export class MenuLeftComponent implements OnInit {
     private store: Store<any>,
     private router: Router,
     private _userService: UserService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this._userService.getMenu().subscribe(res => {
-      console.log('MenuLeftComponent', res)
+      console.log('MenuLeftComponent', res['menu_data'])
+      this.menuData = res['menu_data']
+      this.activateMenu(this.router.url)
     })
-    this.menuService.getLeftMenuData().subscribe(menuData => (this.menuData = menuData))
+    // this.menuService.getLeftMenuData().subscribe(menuData => (this.menuData = menuData))
     this.store.pipe(select(Reducers.getSettings)).subscribe(state => {
       this.isLightTheme = state.isLightTheme
       this.isMobileView = state.isMobileView
     })
-    this.activateMenu(this.router.url)
     this.router.events
       .pipe(filter(event => event instanceof NavigationStart))
       .subscribe((event: NavigationStart) => {

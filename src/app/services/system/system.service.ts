@@ -23,8 +23,16 @@ export class SystemService extends HttpBase {
 
   public createClient(client): Observable<any> {
     client.phone = client.phone.indexOf('+56') >= 0 ? client.phone : '+56' + client.phone
-    client.role = 'master'
+    client.role = 'admin'
     return this.http.post(this.url_api + '/systems/client', client, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.handleError.bind(this))
+      )
+  }
+
+  public getClients(): Observable<any> {
+    return this.http.get(this.url_api + '/systems/clients', this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.handleError.bind(this))

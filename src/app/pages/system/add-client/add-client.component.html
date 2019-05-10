@@ -3,11 +3,11 @@
     iglesia</strong>
 </div>
 <div class="row">
-  <div class="col-lg-6">
+  <div class="col-lg-12">
     <div class="card">
       <div class="card-header">
         <div class="utils__title">
-          <strong>Datos del Administrador</strong>
+          <strong>Datos del Administrador y su iglesia</strong>
         </div>
         <div class="utils__titleDescription">
           Ingrese los datos y revise bien antes de guardar.
@@ -16,15 +16,25 @@
       <div class="card-body">
         <form [formGroup]="registerAdminForm" (ngSubmit)="onSubmitAdmin()">
           <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
+              <label for="inputRut">Rut</label>
+              <input type="text" id="inputRut" formControlName="rut" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.rut.errors }"
+                [value]="registerAdminForm.get('rut').value" formatRut>
+              <div *ngIf="submitted && f.rut.errors" class="invalid-feedback">
+                <div *ngIf="f.rut.errors.required">El rut es requerido</div>
+                <div *ngIf="f.rut.errors.invalidRut">El rut es invalido</div>
+              </div>
+            </div>
+            <div class="form-group col-md-4">
               <label for="inputEmail">Email</label>
               <input type="email" id="inputEmail" formControlName="email" class="form-control"
                 [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
               <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                <div *ngIf="f.email.errors">El email es requierido</div>
+                <div *ngIf="f.email.errors">El email es requerido</div>
               </div>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
               <label for="inputPhone">Teléfono</label>
               <div class="input-group">
                 <div class="input-group-prepend">
@@ -33,7 +43,7 @@
                 <input type="text" formControlName="phone" class="form-control"
                   [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" id="inputPhone" placeholder="99999999">
                 <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
-                  <div *ngIf="f.phone.errors">El teléfono es requierido</div>
+                  <div *ngIf="f.phone.errors">El teléfono es requerido</div>
                 </div>
               </div>
             </div>
@@ -44,7 +54,7 @@
               <input type="text" formControlName="name" class="form-control"
                 [ngClass]="{ 'is-invalid': submitted && f.name.errors }" id="inputNombre" placeholder="Nombre">
               <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-                <div *ngIf="f.name.errors">El nombre es requierido</div>
+                <div *ngIf="f.name.errors">El nombre es requerido</div>
               </div>
             </div>
             <div class="form-group col-md-6">
@@ -53,8 +63,37 @@
                 [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }" id="inputNombre" id="inputApellido"
                 placeholder="Apellido">
               <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
-                <div *ngIf="f.last_name.errors">El apellido es requierido</div>
+                <div *ngIf="f.last_name.errors">El apellido es requerido</div>
               </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputIglesia">Nombre Iglesia</label>
+              <input [ngClass]="{ 'is-invalid': submitted && f.nameChurch.errors }" formControlName="nameChurch"
+                type="text" class="form-control" id="inputIglesia" placeholder="Santo Cristo">
+              <div *ngIf="submitted && f.nameChurch.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors">El nombre es requerido</div>
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputApellido">Dirección Iglesia</label>
+              <input [ngClass]="{ 'is-invalid': submitted && f.address.errors }" formControlName="address" type="text"
+                class="form-control" id="inputAddress" placeholder="1234 Main St">
+              <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                <div *ngIf="f.address.errors">La dirección es requerida</div>
+              </div>
+            </div>
+          </div>
+          <div class="utils__title">
+            <strong>Ingrese a la consola de Firebase y cree la BD, luego registre el nombre aquí.</strong>
+          </div>
+          <div class="form-group">
+            <label for="inputDB">Nombre BD</label>
+            <input [ngClass]="{ 'is-invalid': submitted && f.bd.errors }" formControlName="bd" type="text"
+              class="form-control" id="inputDB" placeholder="Realtime Database">
+            <div *ngIf="submitted && f.bd.errors" class="invalid-feedback">
+              <div *ngIf="f.bd.errors">El nombre de la BD es requerido</div>
             </div>
           </div>
           <button type="submit" class="btn btn-primary">Registrar Administrador</button>
@@ -62,7 +101,7 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-6">
+  <!-- <div class="col-lg-6">
     <div class="card">
       <div class="card-header">
         <div class="utils__title">
@@ -73,14 +112,22 @@
         </div>
       </div>
       <div class="card-body">
-        <form>
+        <form [formGroup]="registerChurchForm" (ngSubmit)="onSubmitChurch()">
           <div class="form-group">
             <label for="inputIglesia">Nombre Iglesia</label>
-            <input type="text" class="form-control" id="inputIglesia" placeholder="Santo Cristo">
+            <input [ngClass]="{ 'is-invalid': submittedChurch && c.name.errors }" formControlName="name" type="text"
+              class="form-control" id="inputIglesia" placeholder="Santo Cristo">
+            <div *ngIf="submittedChurch && c.name.errors" class="invalid-feedback">
+              <div *ngIf="c.name.errors">El nombre es requierido</div>
+            </div>
           </div>
           <div class="form-group">
-            <label for="inputAddress">Dirección sede central</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+            <label for="inputAddress">Dirección sede central {{submittedChurch}} {{c.address.errors}}</label>
+            <input [ngClass]="{ 'is-invalid': submittedChurch && c.address.errors }" type="text" class="form-control"
+              id="inputAddress" placeholder="1234 Main St">
+            <div *ngIf="submittedChurch && c.address.errors" class="invalid-feedback">
+              <div *ngIf="c.address.errors">La dirección es requerida</div>
+            </div>
           </div>
           <div class="utils__title">
             <strong>Ingrese a la consola de Firebase y cree la BD, luego registre el nombre aquí.</strong>
@@ -93,5 +140,5 @@
         </form>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>
